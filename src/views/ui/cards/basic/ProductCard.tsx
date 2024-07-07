@@ -64,7 +64,7 @@ const ProductCard = (props: any) => {
             <Typography variant='h6' sx={{ mb: 2 }}>
               {props.name}
             </Typography>
-            <Typography variant='body2' sx={{ mb: 2 }}>
+            <Typography variant='body2' sx={{ mb: 2, height: '50px' }}>
               {props.description}
             </Typography>
             <Typography sx={{ mb: 2 }}>
@@ -78,12 +78,6 @@ const ProductCard = (props: any) => {
               Price:{' '}
               <Box component='span' sx={{ fontWeight: 600 }}>
                 ${props.items[0].price}
-              </Box>
-            </Typography>
-            <Typography sx={{ mb: 2 }}>
-              Material:{' '}
-              <Box component='span' sx={{ fontWeight: 600 }}>
-                {props.material}
               </Box>
             </Typography>
           </CardContent>

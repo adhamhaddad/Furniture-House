@@ -28,7 +28,6 @@ const Home = () => {
     dispatch(fetchData())
   }, [dispatch])
 
-  console.log(store)
   return (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={12} md={12}>
