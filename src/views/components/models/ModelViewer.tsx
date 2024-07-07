@@ -8,7 +8,7 @@ import * as THREE from 'three'
 interface ModelProps {
   url: string
 }
-
+// Test
 const Model: React.FC<ModelProps> = ({ url }) => {
   const gltf = useGLTF(url) as GLTF
 
