@@ -1,6 +1,12 @@
 // ** Mock Adapter
 import mock from 'src/@fake-db/mock'
 
+enum ProductColors {
+  WHITE = 'white',
+  ESPRESSO = 'Espresso',
+  IVORY = 'ivory'
+}
+
 const data = [
   {
     product_id: 3,
@@ -9,18 +15,18 @@ const data = [
       {
         product_item_id: 6,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Stoned_Fox.jpg',
+        image: '/images/products/chair.jpg',
         price: '69.69',
         sku: 'RICK&MORTY123',
-        color: 'ESPRESSO'
+        color: '#fed8a6'
       },
       {
         product_item_id: 7,
         qty_stock: 999,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_xRu6rkX.jpeg',
+        image: '/images/products/chair.jpg',
         price: '1234.00',
         sku: 'hamdizika',
-        color: 'IVORY'
+        color: '#4A0000'
       }
     ],
     slug_name: 'leather-chair',
@@ -30,52 +36,7 @@ const data = [
     height: '110.00',
     depth: '60.00',
     material: 'Leather',
-    tenant: 1
-  },
-  {
-    product_id: 2,
-    category: 'Tables',
-    items: [
-      {
-        product_item_id: 1,
-        qty_stock: 0,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM.jpeg',
-        price: '6969.69',
-        sku: 'A7aSKU',
-        color: 'MOCHA'
-      },
-      {
-        product_item_id: 2,
-        qty_stock: 0,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_YgX6rrd.jpeg',
-        price: '6969.69',
-        sku: 'memoSKU',
-        color: 'IVORY'
-      },
-      {
-        product_item_id: 3,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_JScwfWH.jpeg',
-        price: '6969.69',
-        sku: 'memoFRSKU',
-        color: 'ESPRESSO'
-      },
-      {
-        product_item_id: 4,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_4PVSWT4.jpeg',
-        price: '69.69',
-        sku: 'RICK&MORTY',
-        color: 'ESPRESSO'
-      }
-    ],
-    slug_name: 'wabalabadabdabtest',
-    name: 'WabaLabaDabdabTest',
-    description: 'Comfortable rick and morty chair',
-    width: '100.00',
-    height: '900.00',
-    depth: '100.00',
-    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   },
   {
@@ -85,18 +46,18 @@ const data = [
       {
         product_item_id: 8,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domakhaled',
-        color: 'IVORY'
+        color: '#fed8a6'
       },
       {
         product_item_id: 9,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domCofee',
-        color: 'ESPRESSO'
+        color: '#4A0000'
       }
     ],
     slug_name: 'fantastic-chair',
@@ -106,9 +67,9 @@ const data = [
     height: '100.00',
     depth: '900.00',
     material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   },
-
   {
     product_id: 34,
     category: 'Chairs',
@@ -116,18 +77,18 @@ const data = [
       {
         product_item_id: 8,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domakhaled',
-        color: 'IVORY'
+        color: '#4A0000'
       },
       {
         product_item_id: 9,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domCofee',
-        color: 'ESPRESSO'
+        color: '#fed8a6'
       }
     ],
     slug_name: 'fantastic-chair',
@@ -137,9 +98,9 @@ const data = [
     height: '100.00',
     depth: '900.00',
     material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   },
-
   {
     product_id: 34,
     category: 'Chairs',
@@ -147,18 +108,18 @@ const data = [
       {
         product_item_id: 8,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domakhaled',
-        color: 'IVORY'
+        color: '#4A0000'
       },
       {
         product_item_id: 9,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domCofee',
-        color: 'ESPRESSO'
+        color: '#fed8a6'
       }
     ],
     slug_name: 'fantastic-chair',
@@ -168,9 +129,9 @@ const data = [
     height: '100.00',
     depth: '900.00',
     material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   },
-
   {
     product_id: 34,
     category: 'Chairs',
@@ -178,18 +139,18 @@ const data = [
       {
         product_item_id: 8,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domakhaled',
-        color: 'IVORY'
+        color: '#4A0000'
       },
       {
         product_item_id: 9,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
+        image: '/images/products/chair.jpg',
         price: '1.00',
         sku: 'domCofee',
-        color: 'ESPRESSO'
+        color: '#fed8a6'
       }
     ],
     slug_name: 'fantastic-chair',
@@ -199,37 +160,7 @@ const data = [
     height: '100.00',
     depth: '900.00',
     material: 'METAL',
-    tenant: 1
-  },
-
-  {
-    product_id: 34,
-    category: 'Chairs',
-    items: [
-      {
-        product_item_id: 8,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
-        price: '1.00',
-        sku: 'domakhaled',
-        color: 'IVORY'
-      },
-      {
-        product_item_id: 9,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
-        price: '1.00',
-        sku: 'domCofee',
-        color: 'ESPRESSO'
-      }
-    ],
-    slug_name: 'fantastic-chair',
-    name: 'Fantastic Chair',
-    description: 'Comfortable rick and morty chair',
-    width: '100.00',
-    height: '100.00',
-    depth: '900.00',
-    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   }
 ]

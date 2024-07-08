@@ -20,7 +20,7 @@ import { fetchData } from 'src/store/products'
 import Icon from 'src/@core/components/icon'
 
 // ** Custom Components
-import ProductCard from 'src/views/ui/cards/basic/ProductCard'
+import ProductCard from 'src/views/ui/cards/ProductCard'
 
 const ProductsPage = () => {
   // ** Hooks
@@ -45,8 +45,8 @@ const ProductsPage = () => {
           <CardHeader sx={{ p: '20px 4px !important' }} title='Tv units' action={<Link href='/all'>View All</Link>} />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
-              {store.data.slice(0, 3).map((item: any) => (
-                <Grid item xs={12} sm={6} md={4}>
+              {store.data.slice(0, 3).map((item: any, index: number) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
                   <ProductCard {...item} />
                 </Grid>
               ))}
@@ -60,8 +60,8 @@ const ProductsPage = () => {
           <CardHeader sx={{ p: '20px 4px !important' }} title='L-shapes' action={<Link href='/all'>View All</Link>} />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
-              {store.data.slice(0, 3).map((item: any) => (
-                <Grid item xs={12} sm={6} md={4}>
+              {store.data.slice(0, 3).map((item: any, index: number) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
                   <ProductCard {...item} />
                 </Grid>
               ))}
@@ -75,8 +75,8 @@ const ProductsPage = () => {
           <CardHeader sx={{ p: '20px 4px !important' }} title='Chairs' action={<Link href='/all'>View All</Link>} />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
-              {store.data.slice(0, 3).map((item: any) => (
-                <Grid item xs={12} sm={6} md={4}>
+              {store.data.slice(0, 3).map((item: any, index: number) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
                   <ProductCard {...item} />
                 </Grid>
               ))}

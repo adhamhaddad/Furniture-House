@@ -1,13 +1,19 @@
 // components/ModelViewer.tsx
 import React, { useEffect } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
-import { OrbitControls, useGLTF } from '@react-three/drei'
+import { Canvas, useThree, useFrame } from '@react-three/fiber'
+import { OrbitControls, useGLTF, Bounds } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
+import { IProductModel } from 'src/types/product-types'
 
 interface ModelProps {
   url: string
 }
+
+interface Props {
+  model: IProductModel
+}
+
 // Test
 const Model: React.FC<ModelProps> = ({ url }) => {
   const gltf = useGLTF(url) as GLTF
@@ -26,18 +32,29 @@ const Model: React.FC<ModelProps> = ({ url }) => {
   return <primitive object={gltf.scene} />
 }
 
-interface ModelViewerProps {
-  url: string
+const CameraSetup: React.FC = () => {
+  const { camera } = useThree()
+
+  useEffect(() => {
+    camera.position.set(0, 0, 2) // Set initial camera position closer to the model
+    camera.zoom = 1.5 // Increase the zoom to make the model fit better
+    camera.updateProjectionMatrix()
+  }, [camera])
+
+  return null
 }
 
-const ModelViewer: React.FC<ModelViewerProps> = ({ url }) => {
+const ModelViewer: React.FC<Props> = (props: Props) => {
   return (
     <Canvas style={{ width: '100%', height: '100%' }}>
       <ambientLight intensity={1} />
       <directionalLight position={[5, 5, 5]} intensity={1} />
       <ExposureSettings exposure={0.8} />
-      <Model url={url} />
-      <OrbitControls />
+      <Bounds fit clip observe>
+        <Model url={props.model.url} />
+      </Bounds>
+      <OrbitControls makeDefault />
+      <CameraSetup />
     </Canvas>
   )
 }

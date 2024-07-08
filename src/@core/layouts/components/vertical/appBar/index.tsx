@@ -25,20 +25,22 @@ const AppBar = styled(MuiAppBar)<AppBarProps>(({ theme }) => ({
   backgroundColor: '#1F2A4A',
   color: theme.palette.text.primary,
   minHeight: theme.mixins.toolbar.minHeight,
-  [theme.breakpoints.down('sm')]: {
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4)
-  }
+  padding: '0 !important'
 }))
 
 const Toolbar = styled(MuiToolbar)<ToolbarProps>(({ theme }) => ({
   width: '100%',
-  padding: '0 !important',
   minHeight: `${theme.mixins.toolbar.minHeight}px !important`,
-  transition: 'padding .25s ease-in-out, box-shadow .25s ease-in-out, backdrop-filter .25s ease-in-out'
+  // transition: 'padding .25s ease-in-out, box-shadow .25s ease-in-out, backdrop-filter .25s ease-in-out',
+  // paddingLeft: theme.spacing(6),
+  // paddingRight: theme.spacing(6),
+  [theme.breakpoints.down('sm')]: {
+    // paddingLeft: theme.spacing(4),
+    // paddingRight: theme.spacing(4)
+  }
 }))
 
-const MenuToolbar = styled(MuiToolbar)<ToolbarProps>(({ theme }) => ({
+const ToolbarWrapper = styled(MuiToolbar)<ToolbarProps>(({ theme }) => ({
   width: '100%',
   padding: '0 !important',
   alignItems: 'center',
@@ -86,22 +88,28 @@ const LayoutAppBar = (props: Props) => {
         position={appBar === 'fixed' ? 'sticky' : 'static'}
         {...userAppBarProps}
       >
-        <Toolbar
-          className='navbar-content-container'
-          sx={{
-            ...(contentWidth === 'boxed' && {
-              '@media (min-width:1440px)': { maxWidth: `calc(1440px - ${theme.spacing(6)} * 2)` }
-            })
-          }}
-        >
-          {(userAppBarContent && userAppBarContent(props)) || null}
-        </Toolbar>
-        <MenuToolbar className='layout-navbar'>
+        <ToolbarWrapper sx={{ backgroundColor: 'transparent' }}>
           <Toolbar
             className='navbar-content-container'
             sx={{
               ...(contentWidth === 'boxed' && {
                 '@media (min-width:1440px)': { maxWidth: `calc(1440px - ${theme.spacing(6)} * 2)` }
+              })
+            }}
+          >
+            {(userAppBarContent && userAppBarContent(props)) || null}
+          </Toolbar>
+        </ToolbarWrapper>
+
+        <ToolbarWrapper>
+          <Toolbar
+            className='navbar-content-container'
+            sx={{
+              ...(contentWidth === 'boxed' && {
+                '@media (min-width:1440px)': { maxWidth: `calc(1440px - ${theme.spacing(6)} * 2)` },
+                [theme.breakpoints.down('md')]: {
+                  overflowX: 'scroll'
+                }
               })
             }}
           >
@@ -113,7 +121,7 @@ const LayoutAppBar = (props: Props) => {
             <StyledLink href='/furniture'>Lighting</StyledLink>
             <StyledLink href='/furniture'>Fabric & Bedding</StyledLink>
           </Toolbar>
-        </MenuToolbar>
+        </ToolbarWrapper>
       </AppBar>
     </>
   )

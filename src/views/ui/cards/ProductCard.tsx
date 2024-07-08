@@ -18,6 +18,7 @@ import Icon from 'src/@core/components/icon'
 // ** Custom Components
 import DialogProduct from 'src/views/components/dialogs/DialogProduct'
 import DialogProductModel from 'src/views/components/dialogs/DialogProductModel'
+import { IProduct, IProductVariant } from 'src/types/product-types'
 
 // Styled Grid component
 const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
@@ -32,7 +33,7 @@ const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
   }
 }))
 
-const ProductCard = (props: any) => {
+const ProductCard = (props: IProduct) => {
   // ** State
   const [open, setOpen] = useState<boolean>(false)
 
@@ -48,7 +49,7 @@ const ProductCard = (props: any) => {
       <Grid container spacing={6}>
         <StyledGrid item md={5} xs={12}>
           <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img width={137} height={176} alt='Simple Chair' src='/images/products/chair.jpg' onClick={handleOpen} />
+            <img width={137} height={176} alt={props.name} src={props.items[0].image} onClick={handleOpen} />
           </CardContent>
         </StyledGrid>
         <Grid
@@ -69,9 +70,21 @@ const ProductCard = (props: any) => {
             </Typography>
             <Typography sx={{ mb: 2 }}>
               <Box sx={{ pl: 3 }}>
-                <Badge color='primary' badgeContent='' sx={{ mr: 7 }}></Badge>
-                <Badge color='error' badgeContent='' sx={{ mr: 7 }}></Badge>
-                <Badge color='success' badgeContent=''></Badge>
+                {props.items.map((variant: IProductVariant, index: number) => (
+                  <Badge
+                    key={index}
+                    badgeContent=''
+                    sx={{
+                      mr: 7,
+                      '& .MuiBadge-badge': {
+                        backgroundColor: variant.color,
+                        ...(index === 0 && {
+                          border: '2px solid black'
+                        })
+                      }
+                    }}
+                  ></Badge>
+                ))}
               </Box>
             </Typography>
             <Typography sx={{ mb: 2 }}>
@@ -88,12 +101,12 @@ const ProductCard = (props: any) => {
                 Add to Card
               </Button>
 
-              <DialogProductModel />
+              <DialogProductModel model={props.model} />
             </Box>
           </CardActions>
         </Grid>
       </Grid>
-      <DialogProduct {...props} open={open} handleClose={handleClose} />
+      <DialogProduct product={props} open={open} handleClose={handleClose} />
     </Card>
   )
 }

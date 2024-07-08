@@ -14,8 +14,13 @@ import IconButton from '@mui/material/IconButton'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 import ModelViewer from '../models/ModelViewer'
+import { IProductModel } from 'src/types/product-types'
 
-const DialogProductModel = () => {
+interface Props {
+  model: IProductModel
+}
+
+const DialogProductModel = (props: Props) => {
   // ** State
   const [open, setOpen] = useState<boolean>(false)
 
@@ -52,7 +57,7 @@ const DialogProductModel = () => {
             height: { xs: '100%', md: 600 }
           }}
         >
-          <ModelViewer url='/images/models/untitle23d.glb' />
+          <ModelViewer model={props.model} />
         </DialogContent>
         <DialogActions className='dialog-actions-dense'>
           <Button onClick={handleClose}>Close</Button>
