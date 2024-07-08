@@ -73,13 +73,15 @@ export type VerticalLayoutProps = {
     componentProps?: AppBarProps
     content?: (props?: any) => ReactNode
   }
-}
-
-export type HorizontalLayoutProps = {
-  appBar?: {
-    componentProps?: AppBarProps
+  navMenu: {
+    lockedIcon?: ReactNode
+    unlockedIcon?: ReactNode
+    navItems?: VerticalNavItemsType
     content?: (props?: any) => ReactNode
     branding?: (props?: any) => ReactNode
+    afterContent?: (props?: any) => ReactNode
+    beforeContent?: (props?: any) => ReactNode
+    componentProps?: Omit<SwipeableDrawerProps, 'open' | 'onOpen' | 'onClose'>
   }
 }
 
@@ -92,5 +94,4 @@ export type LayoutProps = {
   scrollToTop?: (props?: any) => ReactNode
   saveSettings: (values: Settings) => void
   verticalLayoutProps: VerticalLayoutProps
-  horizontalLayoutProps?: HorizontalLayoutProps
 }

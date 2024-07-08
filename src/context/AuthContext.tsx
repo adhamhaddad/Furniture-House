@@ -41,10 +41,8 @@ const AuthProvider = ({ children }: Props) => {
   useEffect(() => {
     const initAuth = async (): Promise<void> => {
       const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)!
-      console.log(storedToken)
       if (storedToken) {
         setLoading(true)
-        console.log(storedToken)
         await axios
           .get(authConfig.meEndpoint, {
             headers: {
@@ -52,7 +50,6 @@ const AuthProvider = ({ children }: Props) => {
             }
           })
           .then(async response => {
-            console.log(response.data)
             setLoading(false)
             setUser({ ...response.data.userData })
           })

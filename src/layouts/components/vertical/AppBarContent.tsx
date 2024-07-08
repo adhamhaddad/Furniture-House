@@ -7,8 +7,9 @@ import { useContext } from 'react'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-import { styled } from '@mui/material/styles'
 import InputAdornment from '@mui/material/InputAdornment'
+import IconButton from '@mui/material/IconButton'
+import { styled } from '@mui/material/styles'
 
 // ** Context Imports
 import { AbilityContext } from 'src/layouts/components/acl/Can'
@@ -23,7 +24,9 @@ import { Settings } from 'src/@core/context/settingsContext'
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 
 interface Props {
+  hidden: boolean
   settings: Settings
+  toggleNavVisibility: () => void
 }
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -36,7 +39,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 
 const AppBarContent = (props: Props) => {
   // ** Props
-  const { settings } = props
+  const { hidden, settings, toggleNavVisibility } = props
 
   // ** Hooks
   const ability = useContext(AbilityContext)
@@ -44,6 +47,12 @@ const AppBarContent = (props: Props) => {
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', width: '70%', alignItems: 'center' }}>
+        {/* {hidden ? (
+          <IconButton color='inherit' sx={{ ml: -2.75 }} onClick={toggleNavVisibility}>
+            <Icon icon='mdi:menu' />
+          </IconButton>
+        ) : null} */}
+
         <svg width='200' viewBox='0 0 370 83.48319253264016'>
           <defs id='SvgjsDefs1011'></defs>
           <g

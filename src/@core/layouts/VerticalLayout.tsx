@@ -18,6 +18,7 @@ import { LayoutProps } from 'src/@core/layouts/types'
 // ** Components
 import AppBar from './components/vertical/appBar'
 import Customizer from 'src/@core/components/customizer'
+import Navigation from './components/vertical/navigation'
 import Footer from './components/shared-components/footer'
 import ScrollToTop from 'src/@core/components/scroll-to-top'
 
@@ -53,6 +54,9 @@ const VerticalLayout = (props: LayoutProps) => {
   // ** Vars
   const { skin, navHidden, contentWidth } = settings
   const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig
+  const navWidth = navigationSize
+  const navigationBorderWidth = skin === 'bordered' ? 1 : 0
+  const collapsedNavWidth = collapsedNavigationSize
 
   // ** States
   const [navVisible, setNavVisible] = useState<boolean>(false)
@@ -63,6 +67,26 @@ const VerticalLayout = (props: LayoutProps) => {
   return (
     <>
       <VerticalLayoutWrapper className='layout-wrapper'>
+        {/* Navigation Menu */}
+        {navHidden && !(navHidden && settings.lastLayout === 'horizontal') ? null : (
+          <Navigation
+            navWidth={navWidth}
+            navVisible={navVisible}
+            setNavVisible={setNavVisible}
+            collapsedNavWidth={collapsedNavWidth}
+            toggleNavVisibility={toggleNavVisibility}
+            navigationBorderWidth={navigationBorderWidth}
+            navMenuContent={verticalLayoutProps.navMenu.content}
+            navMenuBranding={verticalLayoutProps.navMenu.branding}
+            menuLockedIcon={verticalLayoutProps.navMenu.lockedIcon}
+            verticalNavItems={verticalLayoutProps.navMenu.navItems}
+            navMenuProps={verticalLayoutProps.navMenu.componentProps}
+            menuUnlockedIcon={verticalLayoutProps.navMenu.unlockedIcon}
+            afterNavMenuContent={verticalLayoutProps.navMenu.afterContent}
+            beforeNavMenuContent={verticalLayoutProps.navMenu.beforeContent}
+            {...props}
+          />
+        )}
         <MainContentWrapper
           className='layout-content-wrapper'
           sx={{ ...(contentHeightFixed && { maxHeight: '100vh' }) }}

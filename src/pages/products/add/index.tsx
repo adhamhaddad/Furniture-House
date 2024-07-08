@@ -10,11 +10,9 @@ import CardHeader from '@mui/material/CardHeader'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
-import { styled, useTheme } from '@mui/material/styles'
 import CardContent from '@mui/material/CardContent'
 import Divider from '@mui/material/Divider'
 import FormHelperText from '@mui/material/FormHelperText'
-import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -23,6 +21,9 @@ import Icon from 'src/@core/components/icon'
 import * as yup from 'yup'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+
+// ** Custom Components
+import FileUploaderSingle from 'src/views/components/file-uploader/FileUploaderSingle'
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -36,7 +37,8 @@ const defaultValues = {
   height: '',
   depth: '',
   material: '',
-  category: ''
+  category: '',
+  video: null
 }
 
 interface FormData {
@@ -47,12 +49,10 @@ interface FormData {
   depth: string
   material: string
   category: string
+  video: any
 }
 
 const AddProductPage = () => {
-  // ** Hooks
-  const theme = useTheme()
-
   // ** Vars
   const {
     control,
@@ -269,6 +269,41 @@ const AddProductPage = () => {
                   </Grid>
                 </Grid>
               </Grid>
+
+              <Divider
+                sx={{
+                  '& .MuiDivider-wrapper': { px: 4 },
+                  mt: theme => `${theme.spacing(12)} !important`,
+                  mb: theme => `${theme.spacing(12)} !important`
+                }}
+              />
+
+              <Grid container spacing={6}>
+                <Grid item xs={5} sm={5} md={5}>
+                  <Typography variant='h6' mb={5}>
+                    Product Video
+                  </Typography>
+                  <Typography variant='body2'>Add your necessary information from here</Typography>
+                </Grid>
+                <Grid item xs={7} sm={7} md={7} sx={{ backgroundColor: 'white', pr: 5, pb: 5 }}>
+                  <Grid container spacing={6}>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Controller
+                          name='video'
+                          control={control}
+                          rules={{ required: true }}
+                          render={({ field: { value, onChange } }) => <FileUploaderSingle onChange={onChange} />}
+                        />
+                        {errors.video && (
+                          <FormHelperText sx={{ color: 'error.main' }}>{errors.video.message}</FormHelperText>
+                        )}
+                      </FormControl>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+
               <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 5 }}>
                 <Button variant='contained' type='submit'>
                   Add Product

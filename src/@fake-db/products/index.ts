@@ -3,233 +3,112 @@ import mock from 'src/@fake-db/mock'
 
 const data = [
   {
-    product_id: 3,
+    product_id: 1,
     category: 'Chairs',
     items: [
       {
-        product_item_id: 6,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Stoned_Fox.jpg',
-        price: '69.69',
+        product_item_id: 1,
+        qty_stock: 12,
+        image: '/images/products/chair-1.jpg',
+        price: '5700.00',
         sku: 'RICK&MORTY123',
-        color: 'ESPRESSO'
+        color: '#fed8a6'
       },
       {
-        product_item_id: 7,
-        qty_stock: 999,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_xRu6rkX.jpeg',
-        price: '1234.00',
-        sku: 'hamdizika',
-        color: 'IVORY'
+        product_item_id: 2,
+        qty_stock: 12,
+        image: '/images/products/chair-2.jpg',
+        price: '5750.00',
+        sku: 'RICK&MORTY123',
+        color: '#bfcfff'
+      },
+      {
+        product_item_id: 3,
+        qty_stock: 10,
+        image: '/images/products/chair-3.jpg',
+        price: '5800.00',
+        sku: 'RICK&MORTY123',
+        color: '#808080'
       }
     ],
     slug_name: 'leather-chair',
-    name: 'Leather Chair',
+    name: 'Beech Wood and Linen Arm Chair',
     description: 'Stylish leather office chair for your workspace',
     width: '60.00',
     height: '110.00',
     depth: '60.00',
     material: 'Leather',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   },
   {
     product_id: 2,
-    category: 'Tables',
+    category: 'Chairs',
     items: [
-      {
-        product_item_id: 1,
-        qty_stock: 0,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM.jpeg',
-        price: '6969.69',
-        sku: 'A7aSKU',
-        color: 'MOCHA'
-      },
-      {
-        product_item_id: 2,
-        qty_stock: 0,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_YgX6rrd.jpeg',
-        price: '6969.69',
-        sku: 'memoSKU',
-        color: 'IVORY'
-      },
-      {
-        product_item_id: 3,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_JScwfWH.jpeg',
-        price: '6969.69',
-        sku: 'memoFRSKU',
-        color: 'ESPRESSO'
-      },
       {
         product_item_id: 4,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/WhatsApp_Image_2023-04-27_at_8.44.22_PM_4PVSWT4.jpeg',
-        price: '69.69',
-        sku: 'RICK&MORTY',
-        color: 'ESPRESSO'
-      }
-    ],
-    slug_name: 'wabalabadabdabtest',
-    name: 'WabaLabaDabdabTest',
-    description: 'Comfortable rick and morty chair',
-    width: '100.00',
-    height: '900.00',
-    depth: '100.00',
-    material: 'METAL',
-    tenant: 1
-  },
-  {
-    product_id: 34,
-    category: 'Chairs',
-    items: [
-      {
-        product_item_id: 8,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
-        price: '1.00',
+        image: '/images/products/chair-arm-1.jpg',
+        price: '16000.00',
         sku: 'domakhaled',
-        color: 'IVORY'
+        color: '#fdfdfd'
       },
       {
-        product_item_id: 9,
+        product_item_id: 5,
         qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
-        price: '1.00',
+        image: '/images/products/chair-arm-2.jpg',
+        price: '16000.00',
         sku: 'domCofee',
-        color: 'ESPRESSO'
+        color: '#fed8a6'
+      },
+      {
+        product_item_id: 6,
+        qty_stock: 69,
+        image: '/images/products/chair-arm-3.jpg',
+        price: '16000.00',
+        sku: 'domCofee',
+        color: '#808080'
       }
     ],
     slug_name: 'fantastic-chair',
-    name: 'Fantastic Chair',
+    name: 'Red Beech Wood and Linen 2 Chairs & Pouf - 3 Pieces',
     description: 'Comfortable rick and morty chair',
     width: '100.00',
     height: '100.00',
     depth: '900.00',
     material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   },
-
   {
-    product_id: 34,
+    product_id: 3,
     category: 'Chairs',
     items: [
       {
-        product_item_id: 8,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
-        price: '1.00',
+        product_item_id: 7,
+        qty_stock: 10,
+        image: '/images/products/chair-wood-1.jpg',
+        price: '10799.00',
         sku: 'domakhaled',
-        color: 'IVORY'
+        color: '#808080'
       },
       {
-        product_item_id: 9,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
-        price: '1.00',
+        product_item_id: 8,
+        qty_stock: 12,
+        image: '/images/products/chair-wood-2.jpg',
+        price: '10799.00',
         sku: 'domCofee',
-        color: 'ESPRESSO'
+        color: '#fed8a6'
       }
     ],
     slug_name: 'fantastic-chair',
-    name: 'Fantastic Chair',
+    name: 'Linen and Beech Wood Arm Chair and Pouf 2 pieces',
     description: 'Comfortable rick and morty chair',
     width: '100.00',
     height: '100.00',
     depth: '900.00',
     material: 'METAL',
-    tenant: 1
-  },
-
-  {
-    product_id: 34,
-    category: 'Chairs',
-    items: [
-      {
-        product_item_id: 8,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
-        price: '1.00',
-        sku: 'domakhaled',
-        color: 'IVORY'
-      },
-      {
-        product_item_id: 9,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
-        price: '1.00',
-        sku: 'domCofee',
-        color: 'ESPRESSO'
-      }
-    ],
-    slug_name: 'fantastic-chair',
-    name: 'Fantastic Chair',
-    description: 'Comfortable rick and morty chair',
-    width: '100.00',
-    height: '100.00',
-    depth: '900.00',
-    material: 'METAL',
-    tenant: 1
-  },
-
-  {
-    product_id: 34,
-    category: 'Chairs',
-    items: [
-      {
-        product_item_id: 8,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
-        price: '1.00',
-        sku: 'domakhaled',
-        color: 'IVORY'
-      },
-      {
-        product_item_id: 9,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
-        price: '1.00',
-        sku: 'domCofee',
-        color: 'ESPRESSO'
-      }
-    ],
-    slug_name: 'fantastic-chair',
-    name: 'Fantastic Chair',
-    description: 'Comfortable rick and morty chair',
-    width: '100.00',
-    height: '100.00',
-    depth: '900.00',
-    material: 'METAL',
-    tenant: 1
-  },
-
-  {
-    product_id: 34,
-    category: 'Chairs',
-    items: [
-      {
-        product_item_id: 8,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48.png',
-        price: '1.00',
-        sku: 'domakhaled',
-        color: 'IVORY'
-      },
-      {
-        product_item_id: 9,
-        qty_stock: 69,
-        image: 'http://0.0.0.0:8000/products/images/Screenshot_from_2024-06-16_21-40-48_Dd3N8tF.png',
-        price: '1.00',
-        sku: 'domCofee',
-        color: 'ESPRESSO'
-      }
-    ],
-    slug_name: 'fantastic-chair',
-    name: 'Fantastic Chair',
-    description: 'Comfortable rick and morty chair',
-    width: '100.00',
-    height: '100.00',
-    depth: '900.00',
-    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
     tenant: 1
   }
 ]
