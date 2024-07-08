@@ -1,37 +1,29 @@
+// ** React Imports
+import { useState, useEffect } from 'react'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
-import { useTheme } from '@mui/material/styles'
-import { styled } from '@mui/material/styles'
+import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
 import TextField from '@mui/material/TextField'
 import DialogTitle from '@mui/material/DialogTitle'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import Typography from '@mui/material/Typography'
-import Grid, { GridProps } from '@mui/material/Grid'
+import { useTheme } from '@mui/material/styles'
+
+// ** Types Imports
 import { IProduct, IProductVariant } from 'src/types/product-types'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
-import DialogProductModel from './DialogProductModel'
-import ModelViewer from '../models/ModelViewer'
 
-// Styled Grid component
-const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  [theme.breakpoints.down('md')]: {
-    borderBottom: `1px solid ${theme.palette.divider}`
-  },
-  [theme.breakpoints.up('md')]: {
-    borderRight: `1px solid ${theme.palette.divider}`
-  }
-}))
+// ** Custom Components
+import ModelViewer from '../models/ModelViewer'
+import SwiperProductImage from '../swiper/SwiperProductImage'
 
 interface Props {
   open: boolean
@@ -43,92 +35,107 @@ const DialogProduct = (props: Props) => {
   // ** Vars
   const { open, handleClose, product } = props
 
+  // ** States
+  const [variant, setVariant] = useState(product.items[0])
+
   // ** Hooks
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
+  // ** Handlers
+  const handleVariantChange = (item: IProductVariant) => {
+    setVariant(item)
+  }
+
+  useEffect(() => {
+    return () => {
+      setVariant(product.items[0])
+    }
+  }, [])
+
   return (
     <Dialog maxWidth='lg' fullScreen={fullScreen} open={open} onClose={handleClose}>
-      <DialogTitle id='responsive-dialog-title'>Product</DialogTitle>
+      <DialogTitle id='responsive-dialog-title'>
+        <Typography variant='h6' component='span'>
+          Product Details
+        </Typography>
+        <IconButton
+          aria-label='close'
+          onClick={handleClose}
+          sx={{ top: 10, right: 10, position: 'absolute', color: 'grey.500' }}
+        >
+          <Icon icon='mdi:close' />
+        </IconButton>
+      </DialogTitle>
       <DialogContent>
-        <Grid container spacing={6}>
-          <StyledGrid item md={5} xs={12}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img width='100%' height='100%' alt={product.name} src='/images/products/chair.jpg' />
-            </Box>
-            {/* <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-              <img
-                width='100px'
-                height='100px'
-                alt={product.name}
-                src='/images/products/chair.jpg'
-                style={{ marginRight: 5 }}
-              />
-              <img
-                width='100px'
-                height='100px'
-                alt={product.name}
-                src='/images/products/chair.jpg'
-                style={{ marginRight: 5 }}
-              />
-              <img
-                width='100px'
-                height='100px'
-                alt={product.name}
-                src='/images/products/chair.jpg'
-                style={{ marginRight: 5 }}
-              />
-              <img
-                width='100px'
-                height='100px'
-                alt={product.name}
-                src='/images/products/chair.jpg'
-                style={{ marginRight: 5 }}
-              />
-            </Box> */}
-          </StyledGrid>
+        <Grid container spacing={6} sx={{ pb: 10 }}>
+          <Grid item sm={12} md={5} xs={12}>
+            <SwiperProductImage items={product.items} currentVariant={variant} onChange={handleVariantChange} />
+          </Grid>
 
-          <Grid item md={7} xs={12} sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Grid item sm={12} md={7} xs={12} sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant='h6' sx={{ mb: 2 }}>
               {product.name}
             </Typography>
-            <Typography variant='body2' sx={{ mb: 2, height: '50px' }}>
+            <Typography variant='body2' sx={{ my: 3 }}>
               {product.description}
             </Typography>
-            <Box sx={{ my: 5 }}>
-              <Typography variant='h6'>Specification</Typography>
-              <Typography variant='body2'>Material: {product.material}</Typography>
-              <Typography variant='body2'>Width: {product.width}</Typography>
-              <Typography variant='body2'>Height: {product.height}</Typography>
-              <Typography variant='body2'>Depth: {product.depth}</Typography>
-            </Box>
-            <Typography sx={{ mb: 2 }}>
-              <Box sx={{ pl: 3 }}>
-                {product.items.map((variant: IProductVariant, index: number) => (
-                  <Badge
-                    key={index}
-                    badgeContent=''
-                    sx={{
-                      mr: 7,
-                      '& .MuiBadge-badge': {
-                        backgroundColor: variant.color,
-                        ...(index === 0 && {
-                          border: '2px solid black'
-                        })
-                      }
-                    }}
-                  ></Badge>
-                ))}
-              </Box>
-            </Typography>
-            <Typography sx={{ mt: 10 }}>
+
+            <Typography variant='h6'>
               Price:{' '}
-              <Box component='span' sx={{ fontWeight: 600 }}>
-                ${product.items[0].price}
+              <Box component='span' sx={{ fontWeight: 800 }}>
+                ${variant.price}
               </Box>
             </Typography>
 
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', width: '100%', mt: 'auto' }}>
+            <Box sx={{ my: 3 }}>
+              <Typography variant='h6'>Specification</Typography>
+              <Typography variant='body2' sx={{ my: 2, fontWeight: 800 }}>
+                Material: {product.material}
+              </Typography>
+              <Typography variant='body2' sx={{ mb: 2, fontWeight: 800 }}>
+                Width: {product.width}
+              </Typography>
+              <Typography variant='body2' sx={{ mb: 2, fontWeight: 800 }}>
+                Height: {product.height}
+              </Typography>
+              <Typography variant='body2' sx={{ mb: 2, fontWeight: 800 }}>
+                Depth: {product.depth}
+              </Typography>
+              <Typography variant='body2' sx={{ fontWeight: 800 }}>
+                SKU: {variant.sku}
+              </Typography>
+            </Box>
+
+            <Box sx={{ pl: 5, my: 4 }}>
+              {product.items.map((item: IProductVariant, index: number) => (
+                <Badge
+                  onClick={() => handleVariantChange(item)}
+                  key={index}
+                  badgeContent=''
+                  sx={{
+                    mr: 13,
+                    '& .MuiBadge-badge': {
+                      width: 40,
+                      height: 40,
+                      borderRadius: '50%',
+                      cursor: 'pointer',
+                      backgroundColor: item.color,
+                      ...(item.product_item_id === variant.product_item_id && {
+                        border: '2px solid black'
+                      })
+                    }
+                  }}
+                ></Badge>
+              ))}
+            </Box>
+
+            <Box
+              sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', width: '100%', mt: 'auto' }}
+            >
+              <Typography variant='h6' sx={{ mr: 10, fontWeight: 800 }}>
+                {variant.qty_stock} In Stock
+              </Typography>
               <TextField size='small' type='number' defaultValue='1' sx={{ maxWidth: 100, display: 'block', mr: 4 }} />
               <Button variant='contained' sx={{ '& svg': { mr: 2 } }}>
                 <Icon icon='mdi:cart-plus' fontSize={20} />
@@ -146,9 +153,6 @@ const DialogProduct = (props: Props) => {
           </Grid>
         </Grid>
       </DialogContent>
-      <DialogActions className='dialog-actions-dense'>
-        <Button onClick={handleClose}>Close</Button>
-      </DialogActions>
     </Dialog>
   )
 }

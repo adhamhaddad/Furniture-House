@@ -48,7 +48,7 @@ const ProductCard = (props: IProduct) => {
     <Card>
       <Grid container spacing={6}>
         <StyledGrid item md={5} xs={12}>
-          <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <img width={137} height={176} alt={props.name} src={props.items[0].image} onClick={handleOpen} />
           </CardContent>
         </StyledGrid>
@@ -62,31 +62,30 @@ const ProductCard = (props: IProduct) => {
           }}
         >
           <CardContent>
-            <Typography variant='h6' sx={{ mb: 2 }}>
+            <Typography variant='h6' sx={{ mb: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {props.name}
             </Typography>
             <Typography variant='body2' sx={{ mb: 2, height: '50px' }}>
               {props.description}
             </Typography>
-            <Typography sx={{ mb: 2 }}>
-              <Box sx={{ pl: 3 }}>
-                {props.items.map((variant: IProductVariant, index: number) => (
-                  <Badge
-                    key={index}
-                    badgeContent=''
-                    sx={{
-                      mr: 7,
-                      '& .MuiBadge-badge': {
-                        backgroundColor: variant.color,
-                        ...(index === 0 && {
-                          border: '2px solid black'
-                        })
-                      }
-                    }}
-                  ></Badge>
-                ))}
-              </Box>
-            </Typography>
+
+            <Box sx={{ pl: 3, my: 4 }}>
+              {props.items.map((variant: IProductVariant, index: number) => (
+                <Badge
+                  key={index}
+                  badgeContent=''
+                  sx={{
+                    mr: 7,
+                    '& .MuiBadge-badge': {
+                      backgroundColor: variant.color,
+                      ...(index === 0 && {
+                        border: '2px solid black'
+                      })
+                    }
+                  }}
+                ></Badge>
+              ))}
+            </Box>
             <Typography sx={{ mb: 2 }}>
               Price:{' '}
               <Box component='span' sx={{ fontWeight: 600 }}>
