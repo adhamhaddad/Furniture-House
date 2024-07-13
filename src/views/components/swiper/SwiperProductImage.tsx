@@ -54,7 +54,7 @@ const SwiperProductImage = (props: Props) => {
           {props.items.length > 0 &&
             props.items.map((item: IProductVariant) => (
               <Box key={item.product_item_id} className='keen-slider__slide'>
-                <img width='100%' height='100%' src={item.image} alt={item.sku} />
+                <img width='100%' height='100%' style={{ display: 'block' }} src={item.image} alt={item.sku} />
               </Box>
             ))}
         </Box>
