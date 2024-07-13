@@ -6,10 +6,11 @@ import { useContext } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 // ** Context Imports
 import { AbilityContext } from 'src/layouts/components/acl/Can'
@@ -35,7 +36,22 @@ const StyledLink = styled(Link)(({ theme }) => ({
   alignItems: 'center',
   textDecoration: 'none',
   marginRight: theme.spacing(8),
-  color: 'white'
+  color: 'white',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none'
+  }
+}))
+
+const StyledTextField = styled(TextField)<TextFieldProps>(({ theme }) => ({
+  backgroundColor: 'white',
+  borderRadius: 6,
+  width: '500px',
+  [theme.breakpoints.down('md')]: {
+    width: '80%'
+  },
+  [theme.breakpoints.down('sm')]: {
+    display: 'none'
+  }
 }))
 
 const AppBarContent = (props: Props) => {
@@ -44,22 +60,26 @@ const AppBarContent = (props: Props) => {
 
   // ** Hooks
   const ability = useContext(AbilityContext)
+  const theme = useTheme()
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
+  const logoWidth = isSmallScreen ? '150' : '200'
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <Box className='actions-left' sx={{ mr: 2, display: 'flex', width: '70%', alignItems: 'center' }}>
-        {/* {hidden ? (
-          <IconButton color='inherit' sx={{ ml: -2.75 }} onClick={toggleNavVisibility}>
+      <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {hidden ? (
+          <IconButton sx={{ ml: -2.75, mr: 4, color: 'white' }} onClick={toggleNavVisibility}>
             <Icon icon='mdi:menu' />
           </IconButton>
-        ) : null} */}
+        ) : null}
 
-        <Logo width='200' fill='#ffffff' />
-        <TextField
+        <Logo width={logoWidth} fill='#ffffff' />
+        <StyledTextField
           fullWidth
           size='small'
+          sx={{ ml: 15 }}
           placeholder='What are you looking for?'
-          sx={{ ml: 15, backgroundColor: 'white', borderRadius: 0.5, maxWidth: '600px' }}
           onChange={e => 'handleFilter(e.target.value)'}
           InputProps={{
             startAdornment: (
