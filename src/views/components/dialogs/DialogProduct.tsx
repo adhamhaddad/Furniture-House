@@ -22,7 +22,6 @@ import { IProduct, IProductVariant } from 'src/types/product-types'
 import Icon from 'src/@core/components/icon'
 
 // ** Custom Components
-import ModelViewer from '../models/ModelViewer'
 import SwiperProductImage from '../swiper/SwiperProductImage'
 import ModelViewerV2 from '../models/ModelViewerV2'
 
