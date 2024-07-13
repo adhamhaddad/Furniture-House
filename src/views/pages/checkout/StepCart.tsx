@@ -82,15 +82,15 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
         <StyledList sx={{ mb: 4 }}>
           <ListItem>
             <ListItemAvatar>
-              <img width={140} src='/images/products/google-home.png' alt='Google Home' />
+              <img width={140} src='/images/products/chair-1.jpg' alt='Beech Wood and Linen Arm Chair' />
             </ListItemAvatar>
             <IconButton size='small' className='remove-item' sx={{ color: 'text.primary' }}>
               <Icon icon='mdi:close' fontSize={20} />
             </IconButton>
             <Grid container>
               <Grid item xs={12} md={8}>
-                <ListItemText primary='Google - Google Home - White' />
-                <Box sx={{ display: 'flex' }}>
+                <ListItemText primary='Beech Wood and Linen Arm Chair' />
+                <Box sx={{ display: 'flex', mb: 4 }}>
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
                     href='/'
@@ -98,11 +98,10 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                     onClick={e => e.preventDefault()}
                     sx={{ mr: 4, color: 'primary.main' }}
                   >
-                    Google
+                    Mohamed Khaled
                   </Typography>
                   <CustomChip size='small' skin='light' color='success' label='In Stock' />
                 </Box>
-                <Rating name='google-nest-rating' value={4} readOnly sx={{ mb: 6 }} />
                 <TextField size='small' type='number' defaultValue='1' sx={{ maxWidth: 100, display: 'block' }} />
               </Grid>
               <Grid item xs={12} md={4} sx={{ mt: [6, 6, 8] }}>
@@ -117,8 +116,7 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                   }}
                 >
                   <Box sx={{ display: 'flex' }}>
-                    <Typography sx={{ color: 'primary.main' }}>$299</Typography>
-                    <Typography sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>/$359</Typography>
+                    <Typography sx={{ color: 'primary.main' }}>$5700.00</Typography>
                   </Box>
                   <Button variant='outlined' size='small'>
                     Move to wishlist
@@ -129,15 +127,19 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
           </ListItem>
           <ListItem>
             <ListItemAvatar>
-              <img width={140} src='/images/products/iphone-11.png' alt='iphone 11' />
+              <img
+                width={140}
+                src='/images/products/chair-arm-1.jpg'
+                alt='Red Beech Wood and Linen 2 Chairs & Pouf - 3 Pieces'
+              />
             </ListItemAvatar>
             <IconButton size='small' className='remove-item' sx={{ color: 'text.primary' }}>
               <Icon icon='mdi:close' fontSize={20} />
             </IconButton>
             <Grid container>
               <Grid item xs={12} md={8}>
-                <ListItemText primary='Apple iPhone 11 (64GB, Black)' />
-                <Box sx={{ display: 'flex' }}>
+                <ListItemText primary='Red Beech Wood and Linen 2 Chairs & Pouf - 3 Pieces' />
+                <Box sx={{ display: 'flex', mb: 4 }}>
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
                     href='/'
@@ -145,11 +147,10 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                     onClick={e => e.preventDefault()}
                     sx={{ mr: 4, color: 'primary.main' }}
                   >
-                    Apple
+                    Mohamed Khaled
                   </Typography>
                   <CustomChip size='small' skin='light' color='success' label='In Stock' />
                 </Box>
-                <Rating name='iphone-11-rating' value={4} readOnly sx={{ mb: 6 }} />
                 <TextField size='small' type='number' defaultValue='1' sx={{ maxWidth: 100, display: 'block' }} />
               </Grid>
               <Grid item xs={12} md={4} sx={{ mt: [6, 6, 8] }}>
@@ -164,8 +165,7 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                   }}
                 >
                   <Box sx={{ display: 'flex' }}>
-                    <Typography sx={{ color: 'primary.main' }}>$899</Typography>
-                    <Typography sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>/$999</Typography>
+                    <Typography sx={{ color: 'primary.main' }}>$16000.00</Typography>
                   </Box>
                   <Button variant='outlined' size='small'>
                     Move to wishlist
@@ -272,7 +272,7 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
                   Order Total
                 </Typography>
-                <Typography variant='body2'>$1198.00</Typography>
+                <Typography variant='body2'>$21700.00</Typography>
               </Box>
               <Box
                 sx={{
@@ -301,7 +301,7 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
               sx={{ gap: 2, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}
             >
               <Typography sx={{ fontWeight: 600 }}>Total</Typography>
-              <Typography sx={{ fontWeight: 600 }}>$1198.00</Typography>
+              <Typography sx={{ fontWeight: 600 }}>$21700.00</Typography>
             </Box>
           </CardContent>
         </Box>

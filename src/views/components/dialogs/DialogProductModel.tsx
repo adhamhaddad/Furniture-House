@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton'
 import Icon from 'src/@core/components/icon'
 import ModelViewer from '../models/ModelViewer'
 import { IProductModel } from 'src/types/product-types'
+import ModelViewerV2 from '../models/ModelViewerV2'
 
 interface Props {
   model: IProductModel
@@ -40,6 +41,7 @@ const DialogProductModel = (props: Props) => {
         aria-haspopup='true'
         onClick={handleClickOpen}
         aria-controls='long-menu'
+        sx={{ ml: 'auto' }}
       >
         <Icon icon='mdi:eye' fontSize={20} />
       </IconButton>
@@ -57,7 +59,7 @@ const DialogProductModel = (props: Props) => {
             height: { xs: '100%', md: 600 }
           }}
         >
-          <ModelViewer model={props.model} />
+          <ModelViewerV2 src={props.model.url} avatar={props.model.url} />
         </DialogContent>
         <DialogActions className='dialog-actions-dense'>
           <Button onClick={handleClose}>Close</Button>
