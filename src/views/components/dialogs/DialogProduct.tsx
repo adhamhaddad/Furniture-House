@@ -24,6 +24,7 @@ import Icon from 'src/@core/components/icon'
 // ** Custom Components
 import ModelViewer from '../models/ModelViewer'
 import SwiperProductImage from '../swiper/SwiperProductImage'
+import ModelViewerV2 from '../models/ModelViewerV2'
 
 interface Props {
   open: boolean
@@ -148,7 +149,7 @@ const DialogProduct = (props: Props) => {
               Product 3D Model
             </Typography>
             <Box sx={{ height: '400px', border: '1px solid #757575' }}>
-              <ModelViewer model={product.model} />
+              <ModelViewerV2 src={product.model.url} avatar={product.model.url} />
             </Box>
           </Grid>
         </Grid>

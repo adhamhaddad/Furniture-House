@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -11,6 +11,9 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import Grid, { GridProps } from '@mui/material/Grid'
+
+// ** Context Imports
+import { AbilityContext } from 'src/layouts/components/acl/Can'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -36,6 +39,9 @@ const StyledGrid = styled(Grid)<GridProps>(({ theme }) => ({
 const ProductCard = (props: IProduct) => {
   // ** State
   const [open, setOpen] = useState<boolean>(false)
+
+  // ** Hooks
+  const ability = useContext(AbilityContext)
 
   const handleOpen = () => {
     setOpen(true)
@@ -95,10 +101,12 @@ const ProductCard = (props: IProduct) => {
           </CardContent>
           <CardActions className='card-action-dense'>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-              <Button sx={{ '& svg': { mr: 2 } }}>
-                <Icon icon='mdi:cart-plus' fontSize={20} />
-                Add to Card
-              </Button>
+              {ability?.can('read', 'add-to-cart') && (
+                <Button sx={{ '& svg': { mr: 2 } }}>
+                  <Icon icon='mdi:cart-plus' fontSize={20} />
+                  Add to Card
+                </Button>
+              )}
 
               <DialogProductModel model={props.model} />
             </Box>
