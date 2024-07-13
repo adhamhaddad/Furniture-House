@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -21,6 +21,9 @@ import { IProduct, IProductVariant } from 'src/types/product-types'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
+// ** Context Imports
+import { AbilityContext } from 'src/layouts/components/acl/Can'
+
 // ** Custom Components
 import SwiperProductImage from '../swiper/SwiperProductImage'
 import ModelViewerV2 from '../models/ModelViewerV2'
@@ -39,6 +42,7 @@ const DialogProduct = (props: Props) => {
   const [variant, setVariant] = useState(product.items[0])
 
   // ** Hooks
+  const ability = useContext(AbilityContext)
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -107,7 +111,7 @@ const DialogProduct = (props: Props) => {
               </Typography>
             </Box>
 
-            <Box sx={{ pl: 5, my: 4 }}>
+            <Box sx={{ p: 5 }}>
               {product.items.map((item: IProductVariant, index: number) => (
                 <Badge
                   onClick={() => handleVariantChange(item)}
@@ -133,14 +137,23 @@ const DialogProduct = (props: Props) => {
             <Box
               sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', width: '100%', mt: 'auto' }}
             >
-              <Typography variant='h6' sx={{ mr: 10, fontWeight: 800 }}>
+              <Typography variant='inherit' sx={{ mr: 10, fontWeight: 800 }}>
                 {variant.qty_stock} In Stock
               </Typography>
-              <TextField size='small' type='number' defaultValue='1' sx={{ maxWidth: 100, display: 'block', mr: 4 }} />
-              <Button variant='contained' sx={{ '& svg': { mr: 2 } }}>
-                <Icon icon='mdi:cart-plus' fontSize={20} />
-                Add to Card
-              </Button>
+              {ability?.can('read', 'add-to-cart') && (
+                <>
+                  <TextField
+                    size='small'
+                    type='number'
+                    defaultValue='1'
+                    sx={{ maxWidth: 100, display: 'block', mr: 4 }}
+                  />
+                  <Button variant='contained' sx={{ '& svg': { mr: 2 } }}>
+                    <Icon icon='mdi:cart-plus' fontSize={20} />
+                    Add to Card
+                  </Button>
+                </>
+              )}
             </Box>
           </Grid>
           <Grid item sm={12} md={12} xs={12} sx={{ my: 4, width: '100%', height: '400px' }}>
