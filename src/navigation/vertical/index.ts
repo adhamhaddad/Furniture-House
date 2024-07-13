@@ -5,20 +5,24 @@ const navigation = (): VerticalNavItemsType => {
   return [
     {
       title: 'Home',
+      icon: 'mdi:home',
       path: '/home',
-      icon: 'mdi:home-outline',
-    },
-    {
-      title: 'Second Page',
-      path: '/second-page',
-      icon: 'mdi:email-outline',
-    },
-    {
-      path: '/acl',
       action: 'read',
-      subject: 'acl-page',
-      title: 'Access Control',
-      icon: 'mdi:shield-outline',
+      subject: 'home-page'
+    },
+    {
+      title: 'Cart',
+      icon: 'mdi:cart',
+      path: '/cart',
+      action: 'read',
+      subject: 'cart-page'
+    },
+    {
+      title: 'My Products',
+      icon: 'mdi:shopping',
+      path: '/products',
+      action: 'read',
+      subject: 'products-page'
     }
   ]
 }

@@ -4,7 +4,12 @@ import { useRef, useState } from 'react'
 // ** MUI Import
 import List from '@mui/material/List'
 import Box, { BoxProps } from '@mui/material/Box'
+import InputAdornment from '@mui/material/InputAdornment'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 import { styled, useTheme } from '@mui/material/styles'
+
+// ** Icon Imports
+import Icon from 'src/@core/components/icon'
 
 // ** Third Party Components
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -17,6 +22,7 @@ import themeConfig from 'src/configs/themeConfig'
 // ** Component Imports
 import Drawer from './Drawer'
 import VerticalNavItems from './VerticalNavItems'
+import VerticalNavHeader from './VerticalNavHeader'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
@@ -55,6 +61,14 @@ const StyledBoxForShadow = styled(Box)<BoxProps>(({ theme }) => ({
   '&.scrolled': {
     opacity: 1
   }
+}))
+
+const StyledTextField = styled(TextField)<TextFieldProps>(() => ({
+  backgroundColor: 'white',
+  borderRadius: 4,
+  width: '91%',
+  marginLeft: 12,
+  marginBottom: 15
 }))
 
 const Navigation = (props: Props) => {
@@ -132,6 +146,21 @@ const Navigation = (props: Props) => {
 
   return (
     <Drawer {...props} navHover={navHover} setNavHover={setNavHover}>
+      <VerticalNavHeader {...props} navHover={navHover} />
+      <StyledTextField
+        fullWidth={false}
+        size='small'
+        placeholder='What are you looking for?'
+        onChange={e => 'handleFilter(e.target.value)'}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position='start'>
+              <Icon icon='mdi:magnify' fontSize='1.25rem' />
+            </InputAdornment>
+          )
+        }}
+      />
+
       {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'fixed' ? beforeNavMenuContent(props) : null}
       {(beforeVerticalNavMenuContentPosition === 'static' || !beforeNavMenuContent) && (
         <StyledBoxForShadow ref={shadowRef} sx={{ background: shadowBgColor() }} />
