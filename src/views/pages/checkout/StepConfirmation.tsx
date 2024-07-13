@@ -151,11 +151,11 @@ const StepConfirmation = () => {
         <StyledList>
           <ListItem>
             <ListItemAvatar>
-              <img width={80} src='/images/products/google-home.png' alt='Google Home' />
+              <img width={80} src='/images/products/chair-1.jpg' alt='Beech Wood and Linen Arm Chair' />
             </ListItemAvatar>
             <Grid container spacing={5}>
               <Grid item xs={12} sm={8}>
-                <ListItemText primary='Google - Google Home - White' />
+                <ListItemText primary='Beech Wood and Linen Arm Chair' />
                 <Box sx={{ display: 'flex' }}>
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
@@ -164,7 +164,7 @@ const StepConfirmation = () => {
                     onClick={e => e.preventDefault()}
                     sx={{ mr: 4, color: 'primary.main' }}
                   >
-                    Google
+                    Mohamed Khaled
                   </Typography>
                   <CustomChip size='small' skin='light' color='success' label='In Stock' />
                 </Box>
@@ -175,18 +175,21 @@ const StepConfirmation = () => {
                 xs={12}
                 sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'flex-start', sm: 'flex-end' } }}
               >
-                <Typography sx={{ color: 'primary.main' }}>$299</Typography>
-                <Typography sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>/$359</Typography>
+                <Typography sx={{ color: 'primary.main' }}>$5700.00</Typography>
               </Grid>
             </Grid>
           </ListItem>
           <ListItem>
             <ListItemAvatar>
-              <img width={80} src='/images/products/iphone-11.png' alt='iphone 11' />
+              <img
+                width={80}
+                src='/images/products/chair-arm-1.jpg'
+                alt='Red Beech Wood and Linen 2 Chairs & Pouf - 3 Pieces'
+              />
             </ListItemAvatar>
             <Grid container spacing={5}>
               <Grid item xs={12} sm={8}>
-                <ListItemText primary='Apple iPhone 11 (64GB, Black)' />
+                <ListItemText primary='Red Beech Wood and Linen 2 Chairs & Pouf - 3 Pieces' />
                 <Box sx={{ display: 'flex' }}>
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
@@ -195,7 +198,7 @@ const StepConfirmation = () => {
                     onClick={e => e.preventDefault()}
                     sx={{ mr: 4, color: 'primary.main' }}
                   >
-                    Apple
+                    Mohamed Khaled
                   </Typography>
                   <CustomChip size='small' skin='light' color='success' label='In Stock' />
                 </Box>
@@ -206,8 +209,7 @@ const StepConfirmation = () => {
                 xs={12}
                 sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'flex-start', sm: 'flex-end' } }}
               >
-                <Typography sx={{ color: 'primary.main' }}>$899</Typography>
-                <Typography sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>/$999</Typography>
+                <Typography sx={{ color: 'primary.main' }}>$16000.00</Typography>
               </Grid>
             </Grid>
           </ListItem>
@@ -231,7 +233,7 @@ const StepConfirmation = () => {
                 <Typography variant='body2' sx={{ color: 'text.primary' }}>
                   Order Total
                 </Typography>
-                <Typography variant='body2'>$1198.00</Typography>
+                <Typography variant='body2'>$21700.00</Typography>
               </Box>
               <Box
                 sx={{
@@ -260,7 +262,7 @@ const StepConfirmation = () => {
               sx={{ gap: 2, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}
             >
               <Typography sx={{ fontWeight: 600 }}>Total</Typography>
-              <Typography sx={{ fontWeight: 600 }}>$1198.00</Typography>
+              <Typography sx={{ fontWeight: 600 }}>$21700.00</Typography>
             </Box>
           </CardContent>
         </Box>
