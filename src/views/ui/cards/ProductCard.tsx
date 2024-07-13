@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import Badge from '@mui/material/Badge'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
+import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import Grid, { GridProps } from '@mui/material/Grid'
@@ -21,6 +22,9 @@ import Icon from 'src/@core/components/icon'
 // ** Custom Components
 import DialogProduct from 'src/views/components/dialogs/DialogProduct'
 import DialogProductModel from 'src/views/components/dialogs/DialogProductModel'
+import ProductMenu from 'src/views/components/menu'
+
+// ** Types Imports
 import { IProduct, IProductVariant } from 'src/types/product-types'
 
 // Styled Grid component
@@ -67,8 +71,12 @@ const ProductCard = (props: IProduct) => {
             pl: theme => [`${theme.spacing(6)} !important`, `${theme.spacing(6)} !important`, '0 !important']
           }}
         >
-          <CardContent>
-            <Typography variant='h6' sx={{ mb: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <CardContent sx={{ position: 'relative' }}>
+            <ProductMenu />
+            <Typography
+              variant='h6'
+              sx={{ mb: 2, pr: 5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+            >
               {props.name}
             </Typography>
             <Typography variant='body2' sx={{ mb: 2, height: '50px' }}>
