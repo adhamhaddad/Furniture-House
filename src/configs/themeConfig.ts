@@ -2,15 +2,7 @@
 import { Direction } from '@mui/material'
 
 // ** Types
-import {
-  Skin,
-  Mode,
-  AppBar,
-  Footer,
-  ContentWidth,
-  VerticalNavToggle,
-  HorizontalMenuToggle
-} from 'src/@core/layouts/types'
+import { Skin, Mode, AppBar, Footer, ContentWidth, HorizontalMenuToggle } from 'src/@core/layouts/types'
 
 type ThemeConfig = {
   skin: Skin
@@ -21,7 +13,6 @@ type ThemeConfig = {
   appBarBlur: boolean
   direction: Direction
   templateName: string
-  navCollapsed: boolean
   routingLoader: boolean
   disableRipple: boolean
   navigationSize: number
@@ -30,10 +21,8 @@ type ThemeConfig = {
   contentWidth: ContentWidth
   disableCustomizer: boolean
   responsiveFontSizes: boolean
-  collapsedNavigationSize: number
   horizontalMenuAnimation: boolean
   layout: 'vertical' | 'horizontal'
-  verticalNavToggleType: VerticalNavToggle
   horizontalMenuToggle: HorizontalMenuToggle
   afterVerticalNavMenuContentPosition: 'fixed' | 'static'
   beforeVerticalNavMenuContentPosition: 'fixed' | 'static'
@@ -57,10 +46,7 @@ const themeConfig: ThemeConfig = {
   navHidden: false /* true | false */,
   menuTextTruncate: true /* true | false */,
   navSubItemIcon: 'mdi:circle' /* Icon */,
-  verticalNavToggleType: 'collapse' /* accordion | collapse /*! Note: This is for Vertical navigation menu only */,
-  navCollapsed: true /* true | false /*! Note: This is for Vertical navigation menu only */,
   navigationSize: 260 /* Number in px(Pixels) /*! Note: This is for Vertical navigation menu only */,
-  collapsedNavigationSize: 0 /* Number in px(Pixels) /*! Note: This is for Vertical navigation menu only */,
   afterVerticalNavMenuContentPosition: 'fixed' /* fixed | static */,
   beforeVerticalNavMenuContentPosition: 'fixed' /* fixed | static */,
   horizontalMenuToggle: 'click' /* click | hover /*! Note: This is for Horizontal navigation menu only */,

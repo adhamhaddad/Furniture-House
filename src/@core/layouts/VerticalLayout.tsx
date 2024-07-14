@@ -53,10 +53,9 @@ const VerticalLayout = (props: LayoutProps) => {
 
   // ** Vars
   const { skin, navHidden, contentWidth } = settings
-  const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig
+  const { navigationSize, disableCustomizer } = themeConfig
   const navWidth = navigationSize
   const navigationBorderWidth = skin === 'bordered' ? 1 : 0
-  const collapsedNavWidth = collapsedNavigationSize
 
   // ** States
   const [navVisible, setNavVisible] = useState<boolean>(false)
@@ -73,7 +72,6 @@ const VerticalLayout = (props: LayoutProps) => {
             navWidth={navWidth}
             navVisible={navVisible}
             setNavVisible={setNavVisible}
-            collapsedNavWidth={collapsedNavWidth}
             toggleNavVisibility={toggleNavVisibility}
             navigationBorderWidth={navigationBorderWidth}
             navMenuContent={verticalLayoutProps.navMenu.content}

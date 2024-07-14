@@ -79,20 +79,7 @@ const Customizer = () => {
   const { settings, saveSettings } = useSettings()
 
   // ** Vars
-  const {
-    mode,
-    skin,
-    appBar,
-    footer,
-    layout,
-    navHidden,
-    direction,
-    appBarBlur,
-    themeColor,
-    navCollapsed,
-    contentWidth,
-    verticalNavToggleType
-  } = settings
+  const { mode, skin, appBar, footer, layout, navHidden, direction, appBarBlur, themeColor, contentWidth } = settings
 
   const handleChange = (field: keyof Settings, value: Settings[keyof Settings]): void => {
     saveSettings({ ...settings, [field]: value })
@@ -338,36 +325,6 @@ const Customizer = () => {
                 <FormControlLabel value='horizontal' label='Horizontal' control={<Radio />} />
               </RadioGroup>
             </Box>
-
-            {/* Menu Toggle */}
-            {navHidden || layout === 'horizontal' ? null : (
-              <Box sx={{ mb: 4 }}>
-                <Typography>Menu Toggle</Typography>
-                <RadioGroup
-                  row
-                  value={verticalNavToggleType}
-                  onChange={e =>
-                    handleChange('verticalNavToggleType', e.target.value as Settings['verticalNavToggleType'])
-                  }
-                  sx={{ '& .MuiFormControlLabel-label': { fontSize: '.875rem', color: 'text.secondary' } }}
-                >
-                  <FormControlLabel value='accordion' label='Accordion' control={<Radio />} />
-                  <FormControlLabel value='collapse' label='Collapse' control={<Radio />} />
-                </RadioGroup>
-              </Box>
-            )}
-
-            {/* Menu Collapsed */}
-            {navHidden || layout === 'horizontal' ? null : (
-              <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Typography>Menu Collapsed</Typography>
-                <Switch
-                  name='navCollapsed'
-                  checked={navCollapsed}
-                  onChange={e => handleChange('navCollapsed', e.target.checked)}
-                />
-              </Box>
-            )}
 
             {/* Menu Hidden */}
             {layout === 'horizontal' && appBar === 'hidden' ? null : (

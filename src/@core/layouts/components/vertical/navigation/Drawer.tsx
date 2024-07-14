@@ -7,14 +7,10 @@ import { LayoutProps } from 'src/@core/layouts/types'
 
 interface Props {
   navWidth: number
-  navHover: boolean
   navVisible: boolean
-  collapsedNavWidth: number
-  hidden: LayoutProps['hidden']
   navigationBorderWidth: number
   settings: LayoutProps['settings']
   children: LayoutProps['children']
-  setNavHover: (values: boolean) => void
   setNavVisible: (value: boolean) => void
   navMenuProps: LayoutProps['verticalLayoutProps']['navMenu']['componentProps']
 }
@@ -39,27 +35,13 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
 
 const Drawer = (props: Props) => {
   // ** Props
-  const {
-    hidden,
-    children,
-    navHover,
-    navWidth,
-    settings,
-    navVisible,
-    setNavHover,
-    navMenuProps,
-    setNavVisible,
-    collapsedNavWidth,
-    navigationBorderWidth
-  } = props
+  const { children, navWidth, settings, navVisible, navMenuProps, setNavVisible, navigationBorderWidth } = props
 
   // ** Hook
   const theme = useTheme()
 
   // ** Vars
-  const { mode, navCollapsed } = settings
-
-  let flag = true
+  const { mode } = settings
 
   const drawerColors = () => {
     if (mode === 'semi-dark') {
@@ -85,25 +67,6 @@ const Drawer = (props: Props) => {
     }
   }
 
-  // Drawer Props for Laptop & Desktop screens
-  const DesktopDrawerProps = {
-    open: true,
-    onOpen: () => null,
-    onClose: () => null,
-    onMouseEnter: () => {
-      // Declared flag to resolve first time flicker issue while trying to collapse the menu
-      if (flag || navCollapsed) {
-        setNavHover(true)
-        flag = false
-      }
-    },
-    onMouseLeave: () => {
-      if (navCollapsed) {
-        setNavHover(false)
-      }
-    }
-  }
-
   let userNavMenuStyle = {}
   let userNavMenuPaperStyle = {}
   if (navMenuProps && navMenuProps.sx) {
@@ -119,20 +82,19 @@ const Drawer = (props: Props) => {
   return (
     <SwipeableDrawer
       className='layout-vertical-nav'
-      variant={hidden ? 'temporary' : 'permanent'}
-      {...(hidden ? { ...MobileDrawerProps } : { ...DesktopDrawerProps })}
+      variant={'temporary'}
+      {...MobileDrawerProps}
       PaperProps={{
         sx: {
           ...drawerColors(),
-          width: navCollapsed && !navHover ? collapsedNavWidth : navWidth,
-          ...(!hidden && navCollapsed && navHover ? { boxShadow: 10 } : {}),
+          width: navWidth,
           borderRight: navigationBorderWidth === 0 ? 0 : `${navigationBorderWidth}px solid ${theme.palette.divider}`,
           ...userNavMenuPaperStyle
         },
         ...navMenuProps?.PaperProps
       }}
       sx={{
-        width: navCollapsed ? collapsedNavWidth : navWidth,
+        width: navWidth,
         ...userNavMenuStyle
       }}
       {...userNavMenuProps}

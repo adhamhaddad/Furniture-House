@@ -18,12 +18,10 @@ export type Settings = {
   navHidden?: boolean // navigation menu
   appBarBlur: boolean
   direction: Direction
-  navCollapsed: boolean
   themeColor: ThemeColor
   contentWidth: ContentWidth
   layout?: 'vertical' | 'horizontal'
   lastLayout?: 'vertical' | 'horizontal'
-  verticalNavToggleType: VerticalNavToggle
   toastPosition?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
 }
 
@@ -35,12 +33,10 @@ export type PageSpecificSettings = {
   navHidden?: boolean // navigation menu
   appBarBlur?: boolean
   direction?: Direction
-  navCollapsed?: boolean
   themeColor?: ThemeColor
   contentWidth?: ContentWidth
   layout?: 'vertical' | 'horizontal'
   lastLayout?: 'vertical' | 'horizontal'
-  verticalNavToggleType?: VerticalNavToggle
   toastPosition?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
 }
 export type SettingsContextValue = {
@@ -63,10 +59,8 @@ const initialSettings: Settings = {
   direction: themeConfig.direction,
   navHidden: themeConfig.navHidden,
   appBarBlur: themeConfig.appBarBlur,
-  navCollapsed: themeConfig.navCollapsed,
   contentWidth: themeConfig.contentWidth,
   toastPosition: themeConfig.toastPosition,
-  verticalNavToggleType: themeConfig.verticalNavToggleType,
   appBar: themeConfig.layout === 'horizontal' && themeConfig.appBar === 'hidden' ? 'fixed' : themeConfig.appBar
 }
 
