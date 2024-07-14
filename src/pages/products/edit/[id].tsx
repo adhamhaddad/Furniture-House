@@ -1,5 +1,9 @@
+// ** React Imports
+import { useState, useEffect } from 'react'
+
 // ** Next Imports
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -17,40 +21,27 @@ import FormHelperText from '@mui/material/FormHelperText'
 // ** Store & Actions Imports
 import { AppDispatch, RootState } from 'src/store'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from 'src/store/products'
+import { fetchData } from 'src/store/products'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
+
+// ** Spinner Import
+import Spinner from 'src/@core/components/spinner'
 
 // ** Third Party Imports
 import * as yup from 'yup'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import toast from 'react-hot-toast'
-
-// ** Custom Components
-import FileUploaderSingle from 'src/views/components/file-uploader/FileUploaderSingle'
 
 const schema = yup.object().shape({
   name: yup.string().required(),
   description: yup.string().min(5).required(),
-  width: yup.string().required(),
-  height: yup.string().required(),
-  depth: yup.string().required(),
-  material: yup.string().required(),
-  category: yup.string().required()
+  width: yup.string().min(5).required(),
+  height: yup.string().min(5).required(),
+  depth: yup.string().min(5).required(),
+  material: yup.string().min(5).required()
 })
-
-const defaultValues = {
-  name: '',
-  description: '',
-  width: '',
-  height: '',
-  depth: '',
-  material: '',
-  category: '',
-  video: null
-}
 
 interface FormData {
   name: string
@@ -59,17 +50,24 @@ interface FormData {
   height: string
   depth: string
   material: string
-  category: string
-  video: File[] | null
 }
 
-const AddProductPage = () => {
+const EditProductPage = () => {
+  // ** States
+  const [defaultValues, setDefaultValues] = useState({
+    name: '',
+    description: '',
+    width: '',
+    height: '',
+    depth: '',
+    material: ''
+  })
+
   // ** Vars
   const {
     control,
     setError,
     handleSubmit,
-    reset,
     formState: { errors }
   } = useForm({
     defaultValues,
@@ -78,25 +76,39 @@ const AddProductPage = () => {
   })
 
   // ** Hooks
+  const router = useRouter()
+  const { id } = router.query
   const dispatch = useDispatch<AppDispatch>()
+  const { loading, data } = useSelector((state: RootState) => state.products)
+
+  useEffect(() => {
+    dispatch(fetchData({ id: Number(id) }))
+  }, [dispatch, id])
+
+  useEffect(() => {
+    if (!loading && data.length > 0) {
+      // Update formData with fetched product data
+      setDefaultValues({
+        name: data[0].name,
+        description: data[0].description,
+        width: data[0].width,
+        height: data[0].height,
+        depth: data[0].depth,
+        material: data[0].material
+      })
+    }
+  }, [loading, data])
 
   const onSubmit = (data: FormData) => {
-    dispatch(addProduct(data)).then(res => {
-      if (res.meta.requestStatus === 'fulfilled') {
-        reset()
-        toast.success('Product added successfully', {
-          duration: 2000
-        })
-      }
-    })
+    console.log(data)
   }
 
-  return (
+  return !loading ? (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={12} md={12}>
         <Card sx={{ backgroundColor: 'transparent', boxShadow: '0 0 0 0' }}>
           <CardHeader
-            title='Add Product'
+            title='Edit Product'
             action={
               <Link href='/products'>
                 <Button startIcon={<Icon icon='mdi:arrow-left' />}>Back to products</Button>
@@ -240,33 +252,12 @@ const AddProductPage = () => {
               <Grid container spacing={6}>
                 <Grid item xs={5} sm={5} md={5}>
                   <Typography variant='h6' mb={5}>
-                    Categories & Materials
+                    Materials
                   </Typography>
                   <Typography variant='body2'>Add your necessary information from here</Typography>
                 </Grid>
                 <Grid item xs={7} sm={7} md={7} sx={{ backgroundColor: 'white', pr: 5, pb: 5 }}>
                   <Grid container spacing={6}>
-                    <Grid item xs={12} sm={12} md={12}>
-                      <FormControl fullWidth>
-                        <Controller
-                          name='category'
-                          control={control}
-                          rules={{ required: true }}
-                          render={({ field: { value, onChange } }) => (
-                            <TextField
-                              InputLabelProps={{ shrink: true }}
-                              label='Category*'
-                              value={value}
-                              onChange={onChange}
-                              error={Boolean(errors.category)}
-                            />
-                          )}
-                        />
-                        {errors.category && (
-                          <FormHelperText sx={{ color: 'error.main' }}>{errors.category.message}</FormHelperText>
-                        )}
-                      </FormControl>
-                    </Grid>
                     <Grid item xs={12} sm={12} md={12}>
                       <FormControl fullWidth>
                         <Controller
@@ -292,45 +283,9 @@ const AddProductPage = () => {
                 </Grid>
               </Grid>
 
-              <Divider
-                sx={{
-                  '& .MuiDivider-wrapper': { px: 4 },
-                  mt: theme => `${theme.spacing(12)} !important`,
-                  mb: theme => `${theme.spacing(12)} !important`
-                }}
-              />
-
-              <Grid container spacing={6}>
-                <Grid item xs={5} sm={5} md={5}>
-                  <Typography variant='h6' mb={5}>
-                    Product Video
-                  </Typography>
-                  <Typography variant='body2'>Add your necessary information from here</Typography>
-                </Grid>
-                <Grid item xs={7} sm={7} md={7} sx={{ backgroundColor: 'white', pr: 5, pb: 5 }}>
-                  <Grid container spacing={6}>
-                    <Grid item xs={12} sm={12} md={12}>
-                      <FormControl fullWidth>
-                        <Controller
-                          name='video'
-                          control={control}
-                          rules={{ required: true }}
-                          render={({ field: { value, onChange } }) => (
-                            <FileUploaderSingle value={value} onChange={onChange} />
-                          )}
-                        />
-                        {errors.video && (
-                          <FormHelperText sx={{ color: 'error.main' }}>{errors.video.message}</FormHelperText>
-                        )}
-                      </FormControl>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-
               <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 5 }}>
                 <Button variant='contained' type='submit'>
-                  Add Product
+                  Edit Product
                 </Button>
               </Box>
             </form>
@@ -338,12 +293,14 @@ const AddProductPage = () => {
         </Card>
       </Grid>
     </Grid>
+  ) : (
+    <Spinner />
   )
 }
 
-AddProductPage.acl = {
+EditProductPage.acl = {
   action: 'read',
-  subject: 'add-product-page'
+  subject: 'edit-product-page'
 }
 
-export default AddProductPage
+export default EditProductPage
