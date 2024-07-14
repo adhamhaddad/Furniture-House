@@ -114,31 +114,74 @@ const data = [
 ]
 
 // POST: Add new user
-mock.onPost('/api/products').reply(config => {
+mock.onPost('/api/products/add').reply(config => {
   // Get event from post data
   const product = JSON.parse(config.data).data
-  console.log(product)
-  // const { length } = data.product
-  // let lastIndex = 0
-  // if (length) {
-  //   lastIndex = data.users[length - 1].id
-  // }
-  // user.id = lastIndex + 1
 
-  // data.users.unshift({ ...user, avatar: '', avatarColor: 'primary', status: 'active' })
+  const { length } = data
+  let lastIndex = 0
+  if (length) {
+    lastIndex = data[length - 1].product_id
+  }
+
+  delete product.video
+
+  data.unshift({
+    product_id: lastIndex + 1,
+    ...product,
+    items: [
+      {
+        product_item_id: 7,
+        qty_stock: 10,
+        image: '/images/products/chair-wood-1.jpg',
+        price: '10799.00',
+        sku: 'domakhaled',
+        color: '#808080'
+      },
+      {
+        product_item_id: 8,
+        qty_stock: 12,
+        image: '/images/products/chair-wood-2.jpg',
+        price: '10799.00',
+        sku: 'domCofee',
+        color: '#fed8a6'
+      }
+    ],
+    slug_name: 'fantastic-chair',
+    model: { url: '/images/models/untitle23d.glb' },
+    tenant: 1
+  })
 
   return [201, { product }]
 })
 
 // GET: DATA
-mock.onGet('/api/products').reply(() => {
+mock.onGet('/api/products').reply(config => {
+  const { id = null } = config.params ?? null
+
+  let product
+
+  if (id) product = data.find(p => p.product_id === id)
+
   return [
     200,
     {
       allData: data,
-      data: data,
-      params: 'test',
+      data: id ? [product] : data,
+      params: id,
       total: data.length
     }
   ]
+})
+
+// DELETE: Product
+mock.onDelete('/api/products/delete').reply(config => {
+  // Get product id from URL
+  const productId = config.data
+
+  const productIndex = data.findIndex(p => p.product_id === productId)
+
+  data.splice(productIndex, 1)
+
+  return [200, { product_id: productId }]
 })

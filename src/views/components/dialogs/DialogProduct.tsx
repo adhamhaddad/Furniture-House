@@ -27,6 +27,7 @@ import { AbilityContext } from 'src/layouts/components/acl/Can'
 // ** Custom Components
 import SwiperProductImage from '../swiper/SwiperProductImage'
 import ModelViewerV2 from '../models/ModelViewerV2'
+import ProductMenu from '../menu'
 
 interface Props {
   open: boolean
@@ -71,7 +72,9 @@ const DialogProduct = (props: Props) => {
           <Icon icon='mdi:close' />
         </IconButton>
       </DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ position: 'relative' }}>
+        {ability?.can('read', 'card-menu-options') && <ProductMenu id={product.product_id} />}
+
         <Grid container spacing={6} sx={{ pb: 10 }}>
           <Grid item sm={12} md={5} xs={12}>
             <SwiperProductImage items={product.items} currentVariant={variant} onChange={handleVariantChange} />

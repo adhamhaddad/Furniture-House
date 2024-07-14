@@ -28,7 +28,7 @@ const ProductsPage = () => {
   const store = useSelector((state: RootState) => state.products)
 
   useEffect(() => {
-    dispatch(fetchData())
+    dispatch(fetchData({ id: null }))
   }, [dispatch])
 
   return (
