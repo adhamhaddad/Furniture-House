@@ -77,11 +77,9 @@ const MenuItemTextMetaWrapper = styled(Box)<BoxProps>({
 const VerticalNavLink = ({
   item,
   parent,
-  navHover,
   settings,
   navVisible,
   isSubToSub,
-  collapsedNavWidth,
   toggleNavVisibility,
   navigationBorderWidth
 }: Props) => {
@@ -90,7 +88,7 @@ const VerticalNavLink = ({
   const router = useRouter()
 
   // ** Vars
-  const { mode, navCollapsed } = settings
+  const { mode } = settings
 
   const icon = parent && !item.icon ? themeConfig.navSubItemIcon : item.icon
 
@@ -132,7 +130,7 @@ const VerticalNavLink = ({
         sx={{
           mt: 1.5,
           transition: 'padding .25s ease-in-out',
-          px: parent ? '0 !important' : `${theme.spacing(navCollapsed && !navHover ? 2 : 3)} !important`
+          px: parent ? '0 !important' : `${theme.spacing(3)} !important`
         }}
       >
         <MenuNavLink
@@ -154,8 +152,8 @@ const VerticalNavLink = ({
             py: 2.25,
             ...conditionalBgColor(),
             ...(item.disabled ? { pointerEvents: 'none' } : { cursor: 'pointer' }),
-            pr: navCollapsed && !navHover ? (collapsedNavWidth - navigationBorderWidth - 24 - 16) / 8 : 3,
-            pl: navCollapsed && !navHover ? (collapsedNavWidth - navigationBorderWidth - 24 - 16) / 8 : 4
+            pr: 3,
+            pl: 4
           }}
         >
           {isSubToSub ? null : (
@@ -163,8 +161,8 @@ const VerticalNavLink = ({
               sx={{
                 ...conditionalIconColor(),
                 transition: 'margin .25s ease-in-out',
-                ...(navCollapsed && !navHover ? { mr: 0 } : { mr: 2 }),
-                ...(parent ? { ml: 2, mr: 4 } : {}), // This line should be after (navCollapsed && !navHover) condition for proper styling
+                ...{ mr: 2 },
+                ...(parent ? { ml: 2, mr: 4 } : {}),
                 '& svg': {
                   ...(!parent ? { fontSize: '1.5rem' } : { fontSize: '0.5rem' }),
                   ...(parent && item.icon ? { fontSize: '0.875rem' } : {})
@@ -178,11 +176,11 @@ const VerticalNavLink = ({
           <MenuItemTextMetaWrapper
             sx={{
               ...(isSubToSub ? { ml: 8 } : {}),
-              ...(navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 })
+              ...{ opacity: 1 }
             }}
           >
             <Typography
-              {...((themeConfig.menuTextTruncate || (!themeConfig.menuTextTruncate && navCollapsed && !navHover)) && {
+              {...((themeConfig.menuTextTruncate || !themeConfig.menuTextTruncate) && {
                 noWrap: true
               })}
             >

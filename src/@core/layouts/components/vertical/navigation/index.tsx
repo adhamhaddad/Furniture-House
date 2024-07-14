@@ -30,7 +30,6 @@ import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 interface Props {
   navWidth: number
   navVisible: boolean
-  collapsedNavWidth: number
   hidden: LayoutProps['hidden']
   navigationBorderWidth: number
   toggleNavVisibility: () => void
@@ -76,7 +75,6 @@ const Navigation = (props: Props) => {
   const { hidden, settings, afterNavMenuContent, beforeNavMenuContent, navMenuContent: userNavMenuContent } = props
 
   // ** States
-  const [navHover, setNavHover] = useState<boolean>(false)
   const [groupActive, setGroupActive] = useState<string[]>([])
   const [currentActiveGroup, setCurrentActiveGroup] = useState<string[]>([])
 
@@ -145,8 +143,8 @@ const Navigation = (props: Props) => {
   const ScrollWrapper = hidden ? Box : PerfectScrollbar
 
   return (
-    <Drawer {...props} navHover={navHover} setNavHover={setNavHover}>
-      <VerticalNavHeader {...props} navHover={navHover} />
+    <Drawer {...props}>
+      <VerticalNavHeader {...props} />
       <StyledTextField
         fullWidth={false}
         size='small'
@@ -187,7 +185,6 @@ const Navigation = (props: Props) => {
           ) : (
             <List className='nav-items' sx={{ pt: 0, '& > :first-of-type': { mt: '0' } }}>
               <VerticalNavItems
-                navHover={navHover}
                 groupActive={groupActive}
                 setGroupActive={setGroupActive}
                 currentActiveGroup={currentActiveGroup}

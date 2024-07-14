@@ -68,7 +68,7 @@ const AppBarContent = (props: Props) => {
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {hidden ? (
+        {hidden && isSmallScreen ? (
           <IconButton sx={{ ml: -2.75, mr: 4, color: 'white' }} onClick={toggleNavVisibility}>
             <Icon icon='mdi:menu' />
           </IconButton>
