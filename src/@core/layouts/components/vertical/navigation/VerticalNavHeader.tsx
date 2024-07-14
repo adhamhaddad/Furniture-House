@@ -5,7 +5,6 @@ import Link from 'next/link'
 import IconButton from '@mui/material/IconButton'
 import Box, { BoxProps } from '@mui/material/Box'
 import { styled, useTheme } from '@mui/material/styles'
-import Typography, { TypographyProps } from '@mui/material/Typography'
 
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
@@ -14,12 +13,9 @@ import { LayoutProps } from 'src/@core/layouts/types'
 import Icon from 'src/@core/components/icon'
 
 // ** Configs
-import themeConfig from 'src/configs/themeConfig'
 import Logo from 'src/views/components/logo'
 
 interface Props {
-  navHover: boolean
-  collapsedNavWidth: number
   hidden: LayoutProps['hidden']
   navigationBorderWidth: number
   toggleNavVisibility: () => void
@@ -40,12 +36,6 @@ const MenuHeaderWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   minHeight: theme.mixins.toolbar.minHeight
 }))
 
-const HeaderTitle = styled(Typography)<TypographyProps>({
-  fontWeight: 700,
-  lineHeight: 1.2,
-  transition: 'opacity .25s ease-in-out, margin .25s ease-in-out'
-})
-
 const StyledLink = styled(Link)({
   display: 'flex',
   alignItems: 'center',
@@ -56,10 +46,8 @@ const VerticalNavHeader = (props: Props) => {
   // ** Props
   const {
     hidden,
-    navHover,
     settings,
     saveSettings,
-    collapsedNavWidth,
     toggleNavVisibility,
     navigationBorderWidth,
     menuLockedIcon: userMenuLockedIcon,
@@ -69,8 +57,7 @@ const VerticalNavHeader = (props: Props) => {
 
   // ** Hooks & Vars
   const theme = useTheme()
-  const { mode, direction, navCollapsed } = settings
-  const menuCollapsedStyles = navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 }
+  const { mode, direction } = settings
 
   const svgFillSecondary = () => {
     if (mode === 'semi-dark') {
@@ -87,44 +74,16 @@ const VerticalNavHeader = (props: Props) => {
     }
   }
 
-  const menuHeaderPaddingLeft = () => {
-    if (navCollapsed && !navHover) {
-      if (userNavMenuBranding) {
-        return 0
-      } else {
-        return (collapsedNavWidth - navigationBorderWidth - 40) / 8
-      }
-    } else {
-      return 5.5
-    }
-  }
-
   const svgRotationDeg = () => {
-    if (navCollapsed) {
-      if (direction === 'rtl') {
-        if (navHover) {
-          return 0
-        } else {
-          return 180
-        }
-      } else {
-        if (navHover) {
-          return 180
-        } else {
-          return 0
-        }
-      }
+    if (direction === 'rtl') {
+      return 180
     } else {
-      if (direction === 'rtl') {
-        return 180
-      } else {
-        return 0
-      }
+      return 0
     }
   }
 
   return (
-    <MenuHeaderWrapper className='nav-header' sx={{ pl: menuHeaderPaddingLeft() }}>
+    <MenuHeaderWrapper className='nav-header' sx={{ pl: 5.5 }}>
       {userNavMenuBranding ? (
         userNavMenuBranding(props)
       ) : (
@@ -146,15 +105,11 @@ const VerticalNavHeader = (props: Props) => {
         <IconButton
           disableRipple
           disableFocusRipple
-          onClick={() => saveSettings({ ...settings, navCollapsed: !navCollapsed })}
+          onClick={() => saveSettings({ ...settings })}
           sx={{ p: 0, color: 'text.primary', backgroundColor: 'transparent !important' }}
         >
           {userMenuLockedIcon && userMenuUnlockedIcon ? (
-            navCollapsed ? (
-              userMenuUnlockedIcon
-            ) : (
-              userMenuLockedIcon
-            )
+            userMenuLockedIcon
           ) : (
             <Box
               width={22}

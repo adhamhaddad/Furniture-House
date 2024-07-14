@@ -6,9 +6,9 @@ const FooterContent = () => {
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
       <Typography variant='body2' sx={{ mr: 2, color: 'white' }}>
-        Made with{' '}
-        <Box component='span' sx={{ color: 'error.main', mr: 1 }}>
-          ❤️
+        Powered by{' '}
+        <Box component='span' sx={{ fontWeight: 800, mr: 1 }}>
+          Abdelrahman Hemida
         </Box>
         {`- © ${new Date().getFullYear()} all rights reserved`}
       </Typography>

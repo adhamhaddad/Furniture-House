@@ -8,7 +8,6 @@ import VerticalNavSectionTitle from './VerticalNavSectionTitle'
 
 interface Props {
   parent?: NavGroup
-  navHover?: boolean
   navVisible?: boolean
   groupActive: string[]
   isSubToSub?: NavGroup

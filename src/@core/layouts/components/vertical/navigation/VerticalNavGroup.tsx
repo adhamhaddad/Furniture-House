@@ -80,7 +80,7 @@ const VerticalNavGroup = (props: Props) => {
   const theme = useTheme()
   const router = useRouter()
   const currentURL = router.asPath
-  const { direction, mode, navCollapsed, verticalNavToggleType } = settings
+  const { direction, mode } = settings
 
   // ** Accordion menu group open toggle
   const toggleActiveGroup = (item: NavGroup, parent: NavGroup | undefined) => {
@@ -126,16 +126,8 @@ const VerticalNavGroup = (props: Props) => {
   // ** Menu Group Click
   const handleGroupClick = () => {
     const openGroup = groupActive
-    if (verticalNavToggleType === 'collapse') {
-      if (openGroup.includes(item.title)) {
-        openGroup.splice(openGroup.indexOf(item.title), 1)
-      } else {
-        openGroup.push(item.title)
-      }
-      setGroupActive([...openGroup])
-    } else {
-      toggleActiveGroup(item, parent)
-    }
+
+    toggleActiveGroup(item, parent)
   }
 
   useEffect(() => {
@@ -147,36 +139,12 @@ const VerticalNavGroup = (props: Props) => {
     }
     setGroupActive([...groupActive])
     setCurrentActiveGroup([...groupActive])
-
-    // Empty Active Group When Menu is collapsed and not hovered, to fix issue route change
-    if (navCollapsed && !navHover) {
-      setGroupActive([])
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath])
 
-  useEffect(() => {
-    if (navCollapsed && !navHover) {
-      setGroupActive([])
-    }
-
-    if ((navCollapsed && navHover) || (groupActive.length === 0 && !navCollapsed)) {
-      setGroupActive([...currentActiveGroup])
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navCollapsed, navHover])
-
-  useEffect(() => {
-    if (groupActive.length === 0 && !navCollapsed) {
-      setGroupActive([])
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navHover])
-
   const icon = parent && !item.icon ? themeConfig.navSubItemIcon : item.icon
 
-  const menuGroupCollapsedStyles = navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 }
+  const menuGroupCollapsedStyles = { opacity: 0 }
 
   const conditionalIconColor = () => {
     if (mode === 'semi-dark') {
@@ -233,10 +201,7 @@ const VerticalNavGroup = (props: Props) => {
             mt: 1.5,
             flexDirection: 'column',
             transition: 'padding .25s ease-in-out',
-            px:
-              parent && item.children
-                ? '0 !important'
-                : `${theme.spacing(navCollapsed && !navHover ? 2 : 3)} !important`
+            px: parent && item.children ? '0 !important' : `${theme.spacing(3)} !important`
           }}
         >
           <ListItemButton
@@ -249,8 +214,8 @@ const VerticalNavGroup = (props: Props) => {
               borderRadius: '8px',
               ...conditionalBgColor(),
               transition: 'padding-left .25s ease-in-out',
-              pr: navCollapsed && !navHover ? (collapsedNavWidth - navigationBorderWidth - 24 - 16) / 8 : 3,
-              pl: navCollapsed && !navHover ? (collapsedNavWidth - navigationBorderWidth - 24 - 16) / 8 : 4,
+              pr: 3,
+              pl: 4,
               '&.Mui-selected.Mui-focusVisible': {
                 backgroundColor: 'action.focus',
                 '&:hover': {
@@ -264,8 +229,7 @@ const VerticalNavGroup = (props: Props) => {
                 sx={{
                   ...conditionalIconColor(),
                   transition: 'margin .25s ease-in-out',
-                  ...(parent && navCollapsed && !navHover ? {} : { mr: 2 }),
-                  ...(navCollapsed && !navHover ? { mr: 0 } : {}), // this condition should come after (parent && navCollapsed && !navHover) condition for proper styling
+                  ...(parent && { mr: 2 }),
                   ...(parent && item.children ? { ml: 2, mr: 4 } : {})
                 }}
               >
@@ -274,7 +238,7 @@ const VerticalNavGroup = (props: Props) => {
             )}
             <MenuItemTextWrapper sx={{ ...menuGroupCollapsedStyles, ...(isSubToSub ? { ml: 8 } : {}) }}>
               <Typography
-                {...((themeConfig.menuTextTruncate || (!themeConfig.menuTextTruncate && navCollapsed && !navHover)) && {
+                {...((themeConfig.menuTextTruncate || !themeConfig.menuTextTruncate) && {
                   noWrap: true
                 })}
               >
