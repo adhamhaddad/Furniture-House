@@ -27,6 +27,7 @@ const defineRulesFor = (role: string, subject: string) => {
   } else if (role === 'customer') {
     can(['read'], 'home-page')
     can(['read'], 'cart-page')
+    can(['read'], 'all-products-page')
     can(['read'], 'add-to-cart')
   } else {
     can(['read', 'create', 'update', 'delete'], subject)
