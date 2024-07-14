@@ -82,7 +82,7 @@ const data = [
   },
   {
     product_id: 3,
-    category: 'Chairs',
+    category: 'l-shapes',
     items: [
       {
         product_item_id: 7,
@@ -94,6 +94,176 @@ const data = [
       },
       {
         product_item_id: 8,
+        qty_stock: 12,
+        image: '/images/products/chair-wood-2.jpg',
+        price: '10799.00',
+        sku: 'domCofee',
+        color: '#fed8a6'
+      }
+    ],
+    slug_name: 'fantastic-chair',
+    name: 'Linen and Beech Wood Arm Chair and Pouf 2 pieces',
+    description: 'Comfortable rick and morty chair',
+    width: '100.00',
+    height: '100.00',
+    depth: '900.00',
+    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
+    tenant: 1
+  },
+  {
+    product_id: 4,
+    category: 'arm-chairs',
+    items: [
+      {
+        product_item_id: 9,
+        qty_stock: 10,
+        image: '/images/products/chair-arm-4.jpg',
+        price: '11099.00',
+        sku: 'FHEWFHF25',
+        color: '#808080'
+      }
+    ],
+    slug_name: 'fantastic-chair',
+    name: 'Linen and Beech Wood Arm Chair',
+    description: 'Comfortable rick and morty chair',
+    width: '110.00',
+    height: '65.00',
+    depth: '110.00',
+    material: 'leather',
+    model: { url: '/images/models/untitle23d.glb' },
+    tenant: 1
+  },
+  {
+    product_id: 5,
+    category: 'arm-chairs',
+    items: [
+      {
+        product_item_id: 11,
+        qty_stock: 10,
+        image: '/images/products/chair-wood-1.jpg',
+        price: '10799.00',
+        sku: 'domakhaled',
+        color: '#808080'
+      },
+      {
+        product_item_id: 12,
+        qty_stock: 12,
+        image: '/images/products/chair-wood-2.jpg',
+        price: '10799.00',
+        sku: 'domCofee',
+        color: '#fed8a6'
+      }
+    ],
+    slug_name: 'fantastic-chair',
+    name: 'Linen and Beech Wood Arm Chair and Pouf 2 pieces',
+    description: 'Comfortable rick and morty chair',
+    width: '100.00',
+    height: '100.00',
+    depth: '900.00',
+    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
+    tenant: 1
+  },
+  {
+    product_id: 6,
+    category: 'l-shapes',
+    items: [
+      {
+        product_item_id: 13,
+        qty_stock: 10,
+        image: '/images/products/chair-wood-1.jpg',
+        price: '10799.00',
+        sku: 'domakhaled',
+        color: '#808080'
+      },
+      {
+        product_item_id: 14,
+        qty_stock: 12,
+        image: '/images/products/chair-wood-2.jpg',
+        price: '10799.00',
+        sku: 'domCofee',
+        color: '#fed8a6'
+      }
+    ],
+    slug_name: 'fantastic-chair',
+    name: 'Linen and Beech Wood Arm Chair and Pouf 2 pieces',
+    description: 'Comfortable rick and morty chair',
+    width: '100.00',
+    height: '100.00',
+    depth: '900.00',
+    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
+    tenant: 1
+  },
+  {
+    product_id: 7,
+    category: 'l-shapes',
+    items: [
+      {
+        product_item_id: 14,
+        qty_stock: 10,
+        image: '/images/products/chair-wood-1.jpg',
+        price: '10799.00',
+        sku: 'domakhaled',
+        color: '#808080'
+      },
+      {
+        product_item_id: 15,
+        qty_stock: 12,
+        image: '/images/products/chair-wood-2.jpg',
+        price: '10799.00',
+        sku: 'domCofee',
+        color: '#fed8a6'
+      }
+    ],
+    slug_name: 'fantastic-chair',
+    name: 'Linen and Beech Wood Arm Chair and Pouf 2 pieces',
+    description: 'Comfortable rick and morty chair',
+    width: '100.00',
+    height: '100.00',
+    depth: '900.00',
+    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
+    tenant: 1
+  },
+  {
+    product_id: 8,
+    category: 'l-shapes',
+    items: [
+      {
+        product_item_id: 16,
+        qty_stock: 10,
+        image: '/images/products/chair-wood-1.jpg',
+        price: '10799.00',
+        sku: 'domakhaled',
+        color: '#808080'
+      }
+    ],
+    slug_name: 'fantastic-chair',
+    name: 'Linen and Beech Wood Arm Chair and Pouf 2 pieces',
+    description: 'Comfortable rick and morty chair',
+    width: '100.00',
+    height: '100.00',
+    depth: '900.00',
+    material: 'METAL',
+    model: { url: '/images/models/untitle23d.glb' },
+    tenant: 1
+  },
+  {
+    product_id: 9,
+    category: 'l-shapes',
+    items: [
+      {
+        product_item_id: 17,
+        qty_stock: 10,
+        image: '/images/products/chair-wood-1.jpg',
+        price: '10799.00',
+        sku: 'domakhaled',
+        color: '#808080'
+      },
+      {
+        product_item_id: 18,
         qty_stock: 12,
         image: '/images/products/chair-wood-2.jpg',
         price: '10799.00',

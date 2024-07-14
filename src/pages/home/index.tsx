@@ -26,7 +26,7 @@ const Home = () => {
   const store = useSelector((state: RootState) => state.products)
 
   useEffect(() => {
-    dispatch(fetchData())
+    dispatch(fetchData({ id: null }))
   }, [dispatch])
 
   return (
@@ -37,7 +37,11 @@ const Home = () => {
 
       <Grid item xs={12} sm={12} md={12}>
         <Card sx={{ backgroundColor: 'transparent', boxShadow: '0 0 0 0 !important' }}>
-          <CardHeader sx={{ p: '20px 4px !important' }} title='Tv units' action={<Link href='/all'>View All</Link>} />
+          <CardHeader
+            sx={{ p: '20px 4px !important' }}
+            title='Tv units'
+            action={<Link href='/products/all/tv-units'>View All</Link>}
+          />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
               {store.data.slice(0, 3).map((item: IProduct, index: number) => (
@@ -51,7 +55,11 @@ const Home = () => {
       </Grid>
       <Grid item xs={12} sm={12} md={12}>
         <Card sx={{ backgroundColor: 'transparent', boxShadow: '0 0 0 0 !important' }}>
-          <CardHeader sx={{ p: '20px 4px !important' }} title='Arm chairs' action={<Link href='/all'>View All</Link>} />
+          <CardHeader
+            sx={{ p: '20px 4px !important' }}
+            title='Arm chairs'
+            action={<Link href='/products/all/arm-chairs'>View All</Link>}
+          />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
               {store.data.slice(0, 3).map((item: any, index: number) => (
@@ -71,7 +79,7 @@ const Home = () => {
           <CardHeader
             sx={{ p: '20px 4px !important' }}
             title='Wooden center tables offers'
-            action={<Link href='/all'>View All</Link>}
+            action={<Link href='/products/all/wooden-tables'>View All</Link>}
           />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
@@ -86,7 +94,11 @@ const Home = () => {
       </Grid>
       <Grid item xs={12} sm={12} md={12}>
         <Card sx={{ backgroundColor: 'transparent', boxShadow: '0 0 0 0 !important' }}>
-          <CardHeader sx={{ p: '20px 4px !important' }} title='L-shapes' action={<Link href='/all'>View All</Link>} />
+          <CardHeader
+            sx={{ p: '20px 4px !important' }}
+            title='L-shapes'
+            action={<Link href='/products/all/l-shapes'>View All</Link>}
+          />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
               {store.data.slice(0, 3).map((item: any, index: number) => (
@@ -103,7 +115,7 @@ const Home = () => {
           <CardHeader
             sx={{ p: '20px 4px !important' }}
             title='Wooden center tables offers'
-            action={<Link href='/all'>View All</Link>}
+            action={<Link href='/products/all/wooden-center-tables'>View All</Link>}
           />
           <CardContent sx={{ p: '4px !important' }}>
             <Grid container spacing={6}>
