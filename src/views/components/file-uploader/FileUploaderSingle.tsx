@@ -21,6 +21,7 @@ interface FileProp {
 }
 
 interface FileUploaderSingleProps {
+  value: File[] | null
   onChange: (file: File | null) => void
 }
 
@@ -45,7 +46,7 @@ const HeadingTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
   }
 }))
 
-const FileUploaderSingle: React.FC<FileUploaderSingleProps> = ({ onChange }) => {
+const FileUploaderSingle: React.FC<FileUploaderSingleProps> = ({ value, onChange }) => {
   // ** State
   const [files, setFiles] = useState<File[]>([])
 
@@ -59,8 +60,6 @@ const FileUploaderSingle: React.FC<FileUploaderSingleProps> = ({ onChange }) => 
       setFiles(acceptedFiles.map((file: File) => Object.assign(file)))
     }
   })
-
-  console.log(files)
 
   useEffect(() => {
     onChange(files[0] || null)

@@ -71,7 +71,7 @@ const ProductCard = (props: IProduct) => {
           }}
         >
           <CardContent sx={{ position: 'relative' }}>
-            {ability?.can('read', 'card-menu-options') && <ProductMenu />}
+            {ability?.can('read', 'card-menu-options') && <ProductMenu id={props.product_id} />}
             <Typography
               variant='h6'
               sx={{ mb: 2, pr: 5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
